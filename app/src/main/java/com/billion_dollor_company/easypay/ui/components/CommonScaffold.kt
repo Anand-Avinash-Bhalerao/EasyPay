@@ -2,6 +2,7 @@ package com.billion_dollor_company.easypay.ui.components
 
 import android.graphics.drawable.Icon
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -25,8 +26,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 fun CommonScaffold(
     hasFAB: Boolean = false,
     iconFAB: ImageVector? = null,
-    onFABClick : () -> Unit = {},
-    content: @Composable () -> Unit
+    onFABClick: () -> Unit = {},
+    content: @Composable (ColumnScope) -> Unit
 ) {
     Scaffold(
         floatingActionButton = {
@@ -54,10 +55,10 @@ fun CommonScaffold(
             Column( // or whatever your parent composable is
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 16.dp)
-                    .padding(top = 12.dp)
+                    .padding(horizontal = 24.dp)
+                    .padding(top = 24.dp)
             ) {
-                content()
+                content(this)
             }
         }
     }
