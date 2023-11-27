@@ -33,7 +33,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             userImage = R.drawable.female4
         ),
         RecentInteractionInfo(
-            firstName = "Shyam",
+            firstName = "Abhishek",
             userImage = R.drawable.male3
         ),
         RecentInteractionInfo(
@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             userImage = R.drawable.female3
         ),
         RecentInteractionInfo(
-            firstName = "Abhishek",
+            firstName = "Shyam",
             userImage = R.drawable.male4
         ),
     )

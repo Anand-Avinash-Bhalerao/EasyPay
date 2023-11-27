@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -61,6 +63,7 @@ fun CreditCard(
                 contentDescription = "Card company logo",
                 modifier = Modifier
                     .align(alignment = Alignment.CenterStart)
+                    .size(80.dp)
             )
             Column(
                 modifier = Modifier
@@ -72,7 +75,7 @@ fun CreditCard(
                 Text(
                     text = firstHalf,
                     style = TextStyle(
-                        fontSize = 16.sp,
+                        fontSize = 18.sp,
                         fontWeight = FontWeight.ExtraBold,
                         color = Color.Black
                     )
@@ -80,7 +83,7 @@ fun CreditCard(
                 Text(
                     text = secondHalf,
                     style = TextStyle(
-                        fontSize = 16.sp,
+                        fontSize = 18.sp,
                         fontWeight = FontWeight.ExtraBold,
                         color = Color.Black
                     )

@@ -11,8 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.billion_dollor_company.easypay.R
 
 
 @Composable
@@ -28,7 +30,7 @@ fun CompanyLogo() {
                 .size(36.dp)
         )
         Text(
-            text = "EasyPay",
+            text = stringResource(id = R.string.app_name),
             style = MaterialTheme.typography.displaySmall.copy(
                 fontWeight = FontWeight.ExtraBold
             ),

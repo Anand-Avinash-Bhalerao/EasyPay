@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.SendToMobile
 import androidx.compose.material.icons.outlined.Contacts
 import androidx.compose.material.icons.outlined.QrCodeScanner
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -26,10 +27,15 @@ import com.billion_dollor_company.easypay.ui.components.HeightSpacer
 
 
 @Composable
-fun PaymentButtonsRow() {
+fun PaymentButtonsRow(
+    goScanQR: () -> Unit
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer
+        )
     ) {
         Row(
             modifier = Modifier
@@ -40,6 +46,7 @@ fun PaymentButtonsRow() {
             PaymentButton(
                 imageVector = Icons.Outlined.QrCodeScanner,
                 text = "Scan any QR code",
+                onClick = goScanQR
             )
             PaymentButton(
                 imageVector = Icons.Outlined.Contacts,
@@ -77,7 +84,7 @@ fun PaymentButton(
         Icon(
             imageVector = imageVector,
             contentDescription = text,
-            tint = MaterialTheme.colorScheme.primary
+//            tint = MaterialTheme.colorScheme.primary
         )
         HeightSpacer(height = 6)
         Text(

@@ -19,13 +19,16 @@ import com.billion_dollor_company.easypay.ui.home.components.UserNameSection
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    goScanQR : () -> Unit
+) {
 
     val viewModel: HomeViewModel = hiltViewModel()
 
     CommonScaffold(
         hasFAB = true,
         iconFAB = Icons.Default.QrCodeScanner,
+        onFABClick = goScanQR
     ) {
         CompanyLogo()
         HeightSpacer()
@@ -41,7 +44,7 @@ fun HomeScreen() {
         )
         HeightSpacer()
 
-        PaymentButtonsRow()
+        PaymentButtonsRow(goScanQR)
         HeightSpacer()
 
 
