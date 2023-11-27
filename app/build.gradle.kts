@@ -75,6 +75,11 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
+
+    //constraint layout
+    implementation ("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
     //viewmodel
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
 
@@ -94,4 +99,7 @@ dependencies {
 
     // icons
     implementation("androidx.compose.material:material-icons-extended:1.5.4")
+
+    //to read bar codes
+    implementation ("com.google.android.gms:play-services-code-scanner:16.1.0")
 }
