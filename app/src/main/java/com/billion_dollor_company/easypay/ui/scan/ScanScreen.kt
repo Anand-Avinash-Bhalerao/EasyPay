@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.billion_dollor_company.easypay.R
 import com.billion_dollor_company.easypay.models.PayeeInfo
 import com.billion_dollor_company.easypay.ui.scan.components.BarCodeScanner
 import com.billion_dollor_company.easypay.util.Constants
@@ -57,15 +58,24 @@ fun ScanScreen(
                         onSuccess = {
                             viewModel.barCodeResult.value = it
                             val uri = Uri.parse(it)
-                            val name = uri.getQueryParameter("name")?.replace("_"," ") ?: ""
+                            val name = uri.getQueryParameter("name")?.replace("_", " ") ?: ""
                             val upiId = uri.getQueryParameter("upiID") ?: ""
                             val phoneNo = uri.getQueryParameter("phoneNo") ?: ""
+
+                            val imagelist = listOf(
+                                R.drawable.male1,
+                                R.drawable.male2,
+                                R.drawable.male3,
+                                R.drawable.male4,
+                            )
+                            val imageID = imagelist.random()
+
                             val payeeInfo = PayeeInfo(
                                 name = name,
                                 phoneNo = phoneNo,
-                                upiID = upiId
+                                upiID = upiId,
+                                imageID = imageID
                             )
-                            Log.d(Constants.TAG, "$name $upiId $phoneNo")
                             onScanned(payeeInfo)
                         }
                     )

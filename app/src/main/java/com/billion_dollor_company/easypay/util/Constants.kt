@@ -7,6 +7,7 @@ object Constants {
     const val NAME = "name"
     const val PHONE_NO = "phoneNo"
     const val UPI_ID = "upi_id"
+    const val IMAGE_ID = "image_id"
     object Scan {
     }
 }

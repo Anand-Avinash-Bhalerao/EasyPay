@@ -121,12 +121,14 @@ fun PayeeDetailsSections(
     viewModel: AmountEnterViewModel,
     modifier: Modifier = Modifier
 ) {
+
+
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(id = R.drawable.male1),
+            painter = painterResource(id = viewModel.imageID),
             contentDescription = "Payee image",
             modifier = Modifier
                 .size(100.dp)

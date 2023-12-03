@@ -37,7 +37,13 @@ fun Navigation() {
         ) {
             ScanScreen(
                 onScanned = { payeeInfo: PayeeInfo ->
-                    navController.navigate(Screen.AmountEnterScreen.route + "/${payeeInfo.name}/${payeeInfo.phoneNo}/${payeeInfo.upiID}")
+                    navController.navigate(
+                        Screen.AmountEnterScreen.route
+                                + "/${payeeInfo.name}"
+                                + "/${payeeInfo.phoneNo}"
+                                + "/${payeeInfo.upiID}/"
+                                + "${payeeInfo.imageID}"
+                    )
                 },
                 onCanceled = {
                     navController.navigateUp()
@@ -46,7 +52,7 @@ fun Navigation() {
         }
 
         composable(
-            route = Screen.AmountEnterScreen.route + "/{${Constants.NAME}}/{${Constants.PHONE_NO}}/{${Constants.UPI_ID}}",
+            route = Screen.AmountEnterScreen.route + "/{${Constants.NAME}}/{${Constants.PHONE_NO}}/{${Constants.UPI_ID}}/{${Constants.IMAGE_ID}}",
             arguments = listOf(
                 navArgument(Constants.NAME) {
                     type = NavType.StringType
@@ -56,6 +62,9 @@ fun Navigation() {
                 },
                 navArgument(Constants.UPI_ID) {
                     type = NavType.StringType
+                },
+                navArgument(Constants.IMAGE_ID) {
+                    type = NavType.IntType
                 }
             )
         ) {

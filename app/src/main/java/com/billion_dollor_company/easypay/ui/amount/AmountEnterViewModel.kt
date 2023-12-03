@@ -16,6 +16,7 @@ class AmountEnterViewModel @Inject constructor(
     val name = savedStateHandle.get<String>(Constants.NAME)!!
     val phoneNo = savedStateHandle.get<String>(Constants.PHONE_NO)!!
     val upiID = savedStateHandle.get<String>(Constants.UPI_ID)!!
+    val imageID = savedStateHandle.get<Int>(Constants.IMAGE_ID)!!
 
     private var amountEntered = mutableStateOf("")
 
