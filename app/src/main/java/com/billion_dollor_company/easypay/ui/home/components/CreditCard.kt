@@ -54,7 +54,7 @@ fun CreditCard(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(80.dp)
+                .height(90.dp)
                 .padding(horizontal = horizontalPadding, vertical = 20.dp)
 
         ) {

@@ -48,11 +48,10 @@ import com.billion_dollor_company.easypay.ui.components.WidthSpacer
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AmountEnterScreen(
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onPayClick: () -> Unit
 ) {
     val viewModel: AmountEnterViewModel = hiltViewModel()
-
-
 
     Scaffold(
         topBar = {
@@ -109,7 +108,8 @@ fun AmountEnterScreen(
                             start.linkTo(parent.start)
                             end.linkTo(parent.end)
                             bottom.linkTo(parent.bottom)
-                        }
+                        },
+                    onPayClick = onPayClick
                 )
             }
         }
@@ -156,7 +156,8 @@ fun PayeeDetailsSections(
 @Composable
 fun AmountAndKeypadSection(
     viewModel: AmountEnterViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onPayClick: () -> Unit
 ) {
     Column(
         modifier = modifier,
@@ -179,7 +180,7 @@ fun AmountAndKeypadSection(
                 .padding(24.dp)
                 .fillMaxWidth(),
             onClick = {
-
+                onPayClick()
             }
         ) {
             Row(
@@ -199,7 +200,7 @@ fun AmountAndKeypadSection(
 }
 
 @Composable
-fun Keypad(
+private fun Keypad(
     viewModel: AmountEnterViewModel
 ) {
 

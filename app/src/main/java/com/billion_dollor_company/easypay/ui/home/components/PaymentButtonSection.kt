@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
@@ -23,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
 import com.billion_dollor_company.easypay.ui.components.HeightSpacer
 
 
@@ -40,13 +42,13 @@ fun PaymentButtonsRow(
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
+            horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.Top
         ) {
             PaymentButton(
                 imageVector = Icons.Outlined.QrCodeScanner,
                 text = "Scan any QR code",
-                onClick = goScanQR
+                onClick = goScanQR,
             )
             PaymentButton(
                 imageVector = Icons.Outlined.Contacts,
@@ -54,12 +56,12 @@ fun PaymentButtonsRow(
             )
             PaymentButton(
                 imageVector = Icons.Default.SendToMobile,
-                text = "Pay phone number",
+                text = "Pay number",
             )
 
             PaymentButton(
                 imageVector = Icons.Default.AlternateEmail,
-                text = "Pay UPI ID or number",
+                text = "Pay UPI ID",
             )
         }
     }
@@ -72,9 +74,10 @@ fun PaymentButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
+
     Column(
         modifier = modifier
-            .width(75.dp)
+            .width(78.dp)
             .clickable {
                 onClick()
             }
