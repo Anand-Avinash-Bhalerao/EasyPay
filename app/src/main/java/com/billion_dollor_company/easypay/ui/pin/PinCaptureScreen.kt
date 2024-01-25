@@ -8,12 +8,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -22,7 +17,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.billion_dollor_company.easypay.ui.pin.components.EnteredPinSection
 import com.billion_dollor_company.easypay.ui.pin.components.KeypadSection
 import com.billion_dollor_company.easypay.ui.pin.components.MoneyTransferAlertSection
-import com.billion_dollor_company.easypay.ui.pin.components.PayeeHiddenSection
 import com.billion_dollor_company.easypay.ui.pin.components.PayeeInfoSection
 import com.billion_dollor_company.easypay.ui.pin.components.PayerInfoSection
 
@@ -45,11 +39,11 @@ fun PinCaptureScreen(
                 modifier = Modifier.fillMaxSize()
             ) {
 
-                val (payerSection, payeeSection, hiddenPayeeSection, upiEnterTitle, pinTextFields, paymentAlert, keypad) = createRefs()
+                val (payerSection, payeeSection, upiEnterTitle, pinTextFields, paymentAlert, keypad) = createRefs()
 
                 PayerInfoSection(
                     bankName = viewModel.getPayerBankName(),
-                    payerAccountNo = viewModel.getPayeeAccountNo(),
+                    payerAccountNo = viewModel.getPayerAccountNo(),
                     modifier = Modifier
                         .constrainAs(payerSection) {
                             start.linkTo(parent.start)
@@ -96,7 +90,7 @@ fun PinCaptureScreen(
                 )
 
                 MoneyTransferAlertSection(
-                    payeeName = "AKSHAY AVINASH BHALERAO",
+                    payeeName = viewModel.getPayeeName(),
                     modifier = Modifier
                         .constrainAs(paymentAlert) {
                             start.linkTo(parent.start)

@@ -1,26 +1,32 @@
 package com.billion_dollor_company.easypay.ui.pin
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.billion_dollor_company.easypay.util.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class PinCaptureViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
+
+
     private var pinEntered = mutableStateOf("")
-    private val payeeName = "AKSHAY AVINASH BHALERAO"
-    private val payeeAccountNo = "12341234"
-    private val payeeBankName = "STATE BANK OF INDIA"
+
+    private val payeeName = savedStateHandle.get<String>(Constants.PayeeInfo.FULL_NAME)!!
+    private val payeeUpiID = savedStateHandle.get<String>(Constants.PayeeInfo.UPI_ID)!!
+    private val payeeBankName = savedStateHandle.get<String>(Constants.PayeeInfo.BANK_NAME)!!
+    private val payeeAccountNo = savedStateHandle.get<String>(Constants.PayeeInfo.ACCOUNT_NO)!!
+    private val amount = savedStateHandle.get<String>(Constants.PayeeInfo.AMOUNT)!!
 
     private val payerName = "ANAND AVINASH BHALERAO"
     private val payerAccountNo = "31241212"
     private val payerBankName = "ICICI"
 
-    private val amount = "100"
     private val refID = "asdad123"
+
 
     fun setPin(newPin: String) = run {
         pinEntered.value = newPin

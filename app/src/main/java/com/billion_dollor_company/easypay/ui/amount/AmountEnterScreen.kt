@@ -1,22 +1,18 @@
 package com.billion_dollor_company.easypay.ui.amount
 
-import android.widget.Button
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Backspace
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.Backspace
 import androidx.compose.material.icons.filled.Payment
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
@@ -36,20 +32,22 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.billion_dollor_company.easypay.R
+import androidx.lifecycle.viewModelScope
+import com.billion_dollor_company.easypay.models.TransactionInfo
 import com.billion_dollor_company.easypay.ui.components.HeightSpacer
 import com.billion_dollor_company.easypay.ui.components.WidthSpacer
+import com.billion_dollor_company.easypay.util.Constants
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AmountEnterScreen(
     onBackClick: () -> Unit,
-    onPayClick: () -> Unit
+    onPayClick: (transactionInfo : TransactionInfo) -> Unit
 ) {
     val viewModel: AmountEnterViewModel = hiltViewModel()
 
@@ -67,7 +65,7 @@ fun AmountEnterScreen(
                             }
                         ) {
                             Icon(
-                                imageVector = Icons.Filled.ArrowBack,
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back"
                             )
                         }
@@ -128,7 +126,7 @@ fun PayeeDetailsSections(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(id = viewModel.imageID),
+            painter = painterResource(id = viewModel.payeeImageID),
             contentDescription = "Payee image",
             modifier = Modifier
                 .size(100.dp)
@@ -137,18 +135,18 @@ fun PayeeDetailsSections(
         )
         HeightSpacer()
         Text(
-            text = viewModel.name,
+            text = viewModel.payeeName,
             style = MaterialTheme.typography.titleLarge.copy(
                 fontWeight = FontWeight.Bold
             )
         )
         HeightSpacer(6)
         Text(
-            text = "+91 ${viewModel.phoneNo}",
+            text = "+91 ${viewModel.payeePhoneNo}",
         )
         HeightSpacer(6)
         Text(
-            text = viewModel.upiID,
+            text = viewModel.payeeUpiID,
         )
     }
 }
@@ -157,7 +155,7 @@ fun PayeeDetailsSections(
 fun AmountAndKeypadSection(
     viewModel: AmountEnterViewModel,
     modifier: Modifier = Modifier,
-    onPayClick: () -> Unit
+    onPayClick: (transactionInfo : TransactionInfo) -> Unit
 ) {
     Column(
         modifier = modifier,
@@ -180,7 +178,13 @@ fun AmountAndKeypadSection(
                 .padding(24.dp)
                 .fillMaxWidth(),
             onClick = {
-                onPayClick()
+                viewModel.viewModelScope.launch {
+                    Log.d(Constants.TAG, "Before calling the fn")
+                    val details = viewModel.getDetails(viewModel.payeeUpiID)
+                    Log.d(Constants.TAG, "after calling the fn")
+                    onPayClick(details)
+                }
+
             }
         ) {
             Row(
@@ -271,7 +275,7 @@ fun BottomRow(
                 .weight(0.33f)
         ) {
             Icon(
-                imageVector = Icons.Default.Backspace,
+                imageVector = Icons.AutoMirrored.Filled.Backspace,
                 contentDescription = "Delete"
             )
         }
