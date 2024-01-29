@@ -1,5 +1,6 @@
 package com.billion_dollor_company.easypay.ui.pin.components
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -7,10 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Backspace
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -19,13 +16,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewModelScope
 import com.billion_dollor_company.easypay.R
+import com.billion_dollor_company.easypay.models.TransactionInfo
 import com.billion_dollor_company.easypay.ui.pin.PinCaptureViewModel
 import com.billion_dollor_company.easypay.ui.theme.light_grey
 import com.billion_dollor_company.easypay.ui.theme.pin_enter_keypad_color
+import com.billion_dollor_company.easypay.util.Constants
+import kotlinx.coroutines.launch
 
 
 private const val CLEAR = "CLEAR"
@@ -34,7 +34,8 @@ private const val SUBMIT = "SUBMIT"
 @Composable
 fun KeypadSection(
     viewModel: PinCaptureViewModel,
-    modifier: Modifier
+    modifier: Modifier,
+    onSubmitClick: (TransactionInfo) -> Unit
 ) {
 
     val callback = { text: String ->
@@ -44,11 +45,17 @@ fun KeypadSection(
                 val newText =
                     currentPinEntered.subSequence(0, currentPinEntered.length - 1).toString()
                 viewModel.setPin(newText)
+            } else {
             }
         } else if (text == SUBMIT) {
+            if (currentPinEntered.length == 6) {
+                val transactionInfo = viewModel.getTransactionInfo()
+                onSubmitClick(transactionInfo)
+            }
         } else {
             if (currentPinEntered.length != 6) {
                 viewModel.setPin(currentPinEntered + text)
+            } else {
             }
         }
     }

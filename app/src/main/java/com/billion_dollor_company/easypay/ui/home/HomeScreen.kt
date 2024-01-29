@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.QrCodeScanner
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.billion_dollor_company.easypay.R
+import com.billion_dollor_company.easypay.models.PayeeInfo
 import com.billion_dollor_company.easypay.ui.components.CommonScaffold
 import com.billion_dollor_company.easypay.ui.components.HeightSpacer
 import com.billion_dollor_company.easypay.ui.home.components.CompanyLogo
@@ -20,7 +21,8 @@ import com.billion_dollor_company.easypay.ui.home.components.UserNameSection
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HomeScreen(
-    goScanQR : () -> Unit
+    goScanQR: () -> Unit,
+    onUserClicked: () -> Unit
 ) {
 
     val viewModel: HomeViewModel = hiltViewModel()
@@ -52,7 +54,8 @@ fun HomeScreen(
 //        HeightSpacer()
 
         RecentSection(
-            list = viewModel.dummyRecentList
+            list = viewModel.dummyRecentList,
+            onUserClicked = onUserClicked
         )
         HeightSpacer()
 

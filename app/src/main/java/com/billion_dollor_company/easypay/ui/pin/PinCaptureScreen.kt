@@ -14,6 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.billion_dollor_company.easypay.models.TransactionInfo
 import com.billion_dollor_company.easypay.ui.pin.components.EnteredPinSection
 import com.billion_dollor_company.easypay.ui.pin.components.KeypadSection
 import com.billion_dollor_company.easypay.ui.pin.components.MoneyTransferAlertSection
@@ -23,7 +24,7 @@ import com.billion_dollor_company.easypay.ui.pin.components.PayerInfoSection
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PinCaptureScreen(
-
+    onSubmitClick: (TransactionInfo) -> Unit
 ) {
     val viewModel: PinCaptureViewModel = hiltViewModel()
     Scaffold(
@@ -107,7 +108,8 @@ fun PinCaptureScreen(
                             start.linkTo(parent.start)
                             end.linkTo(parent.end)
                             bottom.linkTo(parent.bottom)
-                        }
+                        },
+                    onSubmitClick = onSubmitClick
                 )
             }
         }

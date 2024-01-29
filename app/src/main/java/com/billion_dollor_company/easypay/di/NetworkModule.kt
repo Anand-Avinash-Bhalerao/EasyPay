@@ -1,5 +1,6 @@
 package com.billion_dollor_company.easypay.di
 
+import com.billion_dollor_company.easypay.api.StartTransactionApi
 import com.billion_dollor_company.easypay.api.UserInfoApi
 import com.billion_dollor_company.easypay.util.Constants
 import dagger.Module
@@ -27,7 +28,13 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun userInfoAPI(retrofit: Retrofit) : UserInfoApi{
+    fun providesUserInfoAPI(retrofit: Retrofit): UserInfoApi {
         return retrofit.create(UserInfoApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providesStartTransactionAPI(retrofit: Retrofit): StartTransactionApi {
+        return retrofit.create(StartTransactionApi::class.java)
     }
 }

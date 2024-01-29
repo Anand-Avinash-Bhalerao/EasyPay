@@ -1,6 +1,7 @@
 package com.billion_dollor_company.easypay.ui.home.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
@@ -18,13 +19,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.billion_dollor_company.easypay.models.PayeeInfo
 import com.billion_dollor_company.easypay.models.RecentInteractionInfo
 import com.billion_dollor_company.easypay.ui.components.HeightSpacer
 
 
 @Composable
 fun RecentSection(
-    list: List<RecentInteractionInfo>
+    list: List<RecentInteractionInfo>,
+    onUserClicked: () -> Unit
 ) {
     Text(
         text = "Recents",
@@ -38,17 +41,23 @@ fun RecentSection(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         items(list) {
-            RecentPersonItem(person = it)
+            RecentPersonItem(person = it, onUserClicked)
         }
     }
 }
 
 @Composable
 fun RecentPersonItem(
-    person: RecentInteractionInfo
+    person: RecentInteractionInfo,
+    onUserClicked: () -> Unit
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .clickable {
+                onUserClicked()
+            }
+
     ) {
         Image(
             painter = painterResource(id = person.userImage),
