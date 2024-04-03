@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -27,7 +28,7 @@ import com.billion_dollor_company.easypay.ui.components.HeightSpacer
 @Composable
 fun RecentSection(
     list: List<RecentInteractionInfo>,
-    onUserClicked: () -> Unit
+    onUserClicked: (RecentInteractionInfo) -> Unit
 ) {
     Text(
         text = "Recents",
@@ -37,7 +38,7 @@ fun RecentSection(
     LazyVerticalGrid(
         columns = GridCells.Fixed(4),
         modifier = Modifier
-            .height(175.dp),
+            .height(88.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         items(list) {
@@ -49,14 +50,15 @@ fun RecentSection(
 @Composable
 fun RecentPersonItem(
     person: RecentInteractionInfo,
-    onUserClicked: () -> Unit
+    onUserClicked: (RecentInteractionInfo) -> Unit
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .clickable {
-                onUserClicked()
+                onUserClicked(person)
             }
+            .padding(vertical = 12.dp),
 
     ) {
         Image(

@@ -1,4 +1,4 @@
-package com.billion_dollor_company.easypay.ui.pin.components
+package com.billion_dollor_company.easypay.ui.checkBalance.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -6,8 +6,6 @@ import androidx.compose.foundation.indication
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -30,13 +28,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import com.billion_dollor_company.easypay.ui.pin.PinCaptureViewModel
+import com.billion_dollor_company.easypay.ui.checkBalance.CheckBalanceViewModel
 import com.billion_dollor_company.easypay.ui.theme.light_grey
 
 
 @Composable
-fun PayeeInfoSection(
-    viewModel: PinCaptureViewModel,
+fun CheckBalanceInfoSection(
+    viewModel: CheckBalanceViewModel,
     modifier: Modifier,
 ) {
 
@@ -59,21 +57,20 @@ fun PayeeInfoSection(
             bottom.linkTo(parent.bottom)
             width = Dimension.fillToConstraints
         }) {
-            PayeeTextSingleRow(
-                title = "To", mainText = viewModel.getPayeeName()
-            )
-            PayeeTextSingleRow(
-                title = "Sending", mainText = "₹ ${viewModel.getAmount()}"
+            Text(
+                text = "Check Balance", style = MaterialTheme.typography.titleMedium.copy(
+                    color = Color.DarkGray,
+                ), modifier = Modifier.width(150.dp)
             )
             AnimatedVisibility(visible = isExpanded) {
                 Column {
-                    PayeeTextSingleRow(
+                    CheckBalanceSingleRow(
                         title = "REF ID",
                         mainText = viewModel.getRefID()
                     )
-                    PayeeTextSingleRow(
+                    CheckBalanceSingleRow(
                         title = "ACCOUNT",
-                        mainText = "${viewModel.getPayerAccountNo()}"
+                        mainText = "${viewModel.getAccountNo()}"
                     )
                 }
             }
@@ -108,7 +105,7 @@ fun PayeeInfoSection(
 }
 
 @Composable
-fun PayeeTextSingleRow(
+fun CheckBalanceSingleRow(
     title: String, mainText: String
 ) {
     Row {

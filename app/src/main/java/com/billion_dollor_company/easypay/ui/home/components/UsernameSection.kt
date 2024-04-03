@@ -25,6 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.billion_dollor_company.easypay.R
+import com.billion_dollor_company.easypay.util.Constants
 
 
 @Composable
@@ -38,7 +39,7 @@ fun UserNameSection() {
                 .align(alignment = Alignment.CenterStart)
         ) {
             Text(
-                text = "Hello Anand!",
+                text = "Hello ${Constants.PayerDetails.FIRST_NAME}!",
                 style = MaterialTheme.typography.titleLarge.copy(
                     fontWeight = FontWeight.Bold
                 )
@@ -61,7 +62,7 @@ fun UserNameSection() {
             border = BorderStroke(1.5.dp, Color.DarkGray)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.sample_dp),
+                painter = painterResource(id = Constants.PayerDetails.IMAGE),
                 contentDescription = "Profile Picture",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier

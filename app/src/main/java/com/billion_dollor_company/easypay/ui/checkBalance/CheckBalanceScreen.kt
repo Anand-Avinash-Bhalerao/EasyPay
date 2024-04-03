@@ -1,4 +1,4 @@
-package com.billion_dollor_company.easypay.ui.pin
+package com.billion_dollor_company.easypay.ui.checkBalance
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -14,20 +14,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.billion_dollor_company.easypay.models.transaction.TransactionInfo
-import com.billion_dollor_company.easypay.ui.pin.components.EnteredPinSection
-import com.billion_dollor_company.easypay.ui.pin.components.KeypadSection
-import com.billion_dollor_company.easypay.ui.pin.components.MoneyTransferAlertSection
-import com.billion_dollor_company.easypay.ui.pin.components.PayeeInfoSection
-import com.billion_dollor_company.easypay.ui.pin.components.PayerInfoSection
-import java.util.Locale
+import com.billion_dollor_company.easypay.models.checkBalance.CheckBalanceInfo
+import com.billion_dollor_company.easypay.ui.checkBalance.components.CheckBalanceInfoSection
+import com.billion_dollor_company.easypay.ui.checkBalance.components.EnteredPinSection
+import com.billion_dollor_company.easypay.ui.checkBalance.components.KeypadSection
+import com.billion_dollor_company.easypay.ui.checkBalance.components.PinEnterAlertSection
+import com.billion_dollor_company.easypay.ui.checkBalance.components.UserInfoSection
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PinCaptureScreen(
-    onSubmitClick: (TransactionInfo) -> Unit
+fun CheckBalanceScreen(
+    onSubmitClick: (CheckBalanceInfo) -> Unit
 ) {
-    val viewModel: PinCaptureViewModel = hiltViewModel()
+    val viewModel: CheckBalanceViewModel = hiltViewModel()
     Scaffold(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -43,9 +43,9 @@ fun PinCaptureScreen(
 
                 val (payerSection, payeeSection, upiEnterTitle, pinTextFields, paymentAlert, keypad) = createRefs()
 
-                PayerInfoSection(
-                    bankName = viewModel.getPayerBankName(),
-                    payerAccountNo = viewModel.getPayerAccountNo(),
+                UserInfoSection(
+                    bankName = viewModel.getBankName(),
+                    accountNo = viewModel.getAccountNo(),
                     modifier = Modifier
                         .constrainAs(payerSection) {
                             start.linkTo(parent.start)
@@ -55,7 +55,7 @@ fun PinCaptureScreen(
                 )
 
 
-                PayeeInfoSection(
+                CheckBalanceInfoSection(
                     viewModel = viewModel,
                     modifier = Modifier
                         .constrainAs(payeeSection) {
@@ -91,8 +91,7 @@ fun PinCaptureScreen(
                     viewModel = viewModel
                 )
 
-                MoneyTransferAlertSection(
-                    payeeName = viewModel.getPayeeName().uppercase(Locale.getDefault()),
+                PinEnterAlertSection(
                     modifier = Modifier
                         .constrainAs(paymentAlert) {
                             start.linkTo(parent.start)

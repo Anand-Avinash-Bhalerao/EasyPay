@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
-import com.billion_dollor_company.easypay.models.TransactionInfo
+import com.billion_dollor_company.easypay.models.PinCaptureReqInfo
 import com.billion_dollor_company.easypay.ui.components.HeightSpacer
 import com.billion_dollor_company.easypay.ui.components.WidthSpacer
 import com.billion_dollor_company.easypay.util.Constants
@@ -47,7 +47,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun AmountEnterScreen(
     onBackClick: () -> Unit,
-    onPayClick: (transactionInfo : TransactionInfo) -> Unit
+    onPayClick: (pinCaptureReqInfo : PinCaptureReqInfo) -> Unit
 ) {
     val viewModel: AmountEnterViewModel = hiltViewModel()
 
@@ -155,7 +155,7 @@ fun PayeeDetailsSections(
 fun AmountAndKeypadSection(
     viewModel: AmountEnterViewModel,
     modifier: Modifier = Modifier,
-    onPayClick: (transactionInfo : TransactionInfo) -> Unit
+    onPayClick: (transactionReqInfo : PinCaptureReqInfo) -> Unit
 ) {
     Column(
         modifier = modifier,

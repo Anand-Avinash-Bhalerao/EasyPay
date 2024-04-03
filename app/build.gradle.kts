@@ -25,7 +25,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -76,6 +76,9 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 
+    //datastore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
     //constraint layout
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
 
@@ -108,4 +111,7 @@ dependencies {
 
     // lottie animation
     implementation ("com.airbnb.android:lottie-compose:6.3.0")
+
+    // to generate qr codes
+    implementation ("com.lightspark:compose-qr-code:1.0.1")
 }

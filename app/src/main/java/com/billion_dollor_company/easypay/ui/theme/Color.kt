@@ -80,3 +80,6 @@ val light_grey = Color(0xFFF0F0F0)
 val pin_enter_keypad_color = Color(0xFF0d1e78)
 val pin_enter_alert_bg_color = Color(0xFFFFF59D)
 val pin_enter_alert_content_color = Color(0xFFFFAB40)
+
+val qr_alert_bg_color = Color(0xFF9DF4FF)
+val qr_alert_content_color = Color(0xFF4096FF)

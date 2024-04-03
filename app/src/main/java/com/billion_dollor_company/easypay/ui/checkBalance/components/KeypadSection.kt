@@ -1,4 +1,4 @@
-package com.billion_dollor_company.easypay.ui.pin.components
+package com.billion_dollor_company.easypay.ui.checkBalance.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -18,8 +18,8 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.billion_dollor_company.easypay.R
-import com.billion_dollor_company.easypay.models.transaction.TransactionInfo
-import com.billion_dollor_company.easypay.ui.pin.PinCaptureViewModel
+import com.billion_dollor_company.easypay.models.checkBalance.CheckBalanceInfo
+import com.billion_dollor_company.easypay.ui.checkBalance.CheckBalanceViewModel
 import com.billion_dollor_company.easypay.ui.theme.light_grey
 import com.billion_dollor_company.easypay.ui.theme.pin_enter_keypad_color
 
@@ -29,9 +29,9 @@ private const val SUBMIT = "SUBMIT"
 
 @Composable
 fun KeypadSection(
-    viewModel: PinCaptureViewModel,
+    viewModel: CheckBalanceViewModel,
     modifier: Modifier,
-    onSubmitClick: (TransactionInfo) -> Unit
+    onSubmitClick: (CheckBalanceInfo) -> Unit
 ) {
 
     val callback = { text: String ->
@@ -45,7 +45,7 @@ fun KeypadSection(
             }
         } else if (text == SUBMIT) {
             if (currentPinEntered.length == 6) {
-                val transactionInfo = viewModel.getTransactionInfo()
+                val transactionInfo = viewModel.getCheckBalanceInfo()
                 onSubmitClick(transactionInfo)
             }
         } else {

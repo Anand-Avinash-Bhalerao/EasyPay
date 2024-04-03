@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalanceWallet
+import androidx.compose.material.icons.filled.AdminPanelSettings
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.NavigateNext
 import androidx.compose.material.icons.filled.Phone
@@ -22,31 +23,48 @@ import com.billion_dollor_company.easypay.ui.components.WidthSpacer
 
 
 @Composable
-fun MoreSection() {
+fun MoreSection(
+    checkBalanceClick : () -> Unit = {},
+    changeIPClick : () -> Unit = {},
+    seeHistoryClick : () -> Unit = {},
+    contactUsClick : () -> Unit = {}
+) {
     MoreItem(
         title = "Check Balance",
-        icon = Icons.Default.AccountBalanceWallet
+        icon = Icons.Default.AccountBalanceWallet,
+        onClick = checkBalanceClick
     )
 
     MoreItem(
-        title = "See transaction history",
-        icon = Icons.Default.History
+        title = "PSP IP Address",
+        icon = Icons.Default.AdminPanelSettings,
+        onClick = changeIPClick
     )
-    MoreItem(
-        title = "Contact us",
-        icon = Icons.Default.Phone
-    )
+
+//    MoreItem(
+//        title = "See transaction history",
+//        icon = Icons.Default.History,
+//        onClick = seeHistoryClick
+//    )
+//    MoreItem(
+//        title = "Contact us",
+//        icon = Icons.Default.Phone,
+//        onClick = contactUsClick
+//    )
 }
 
 @Composable
 fun MoreItem(
     title: String,
-    icon: ImageVector
+    icon: ImageVector,
+    onClick: () -> Unit = {}
 ) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { }
+            .clickable {
+                onClick()
+            }
             .padding(vertical = 12.dp)
     ) {
         Row(

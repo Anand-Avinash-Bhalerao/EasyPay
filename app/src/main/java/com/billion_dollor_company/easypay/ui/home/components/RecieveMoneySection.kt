@@ -1,5 +1,6 @@
 package com.billion_dollor_company.easypay.ui.home.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,13 +22,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.billion_dollor_company.easypay.ui.components.HeightSpacer
 import com.billion_dollor_company.easypay.ui.components.WidthSpacer
+import com.billion_dollor_company.easypay.util.Constants
 
 
 @Composable
-fun ReceiveMoneySection() {
+fun ReceiveMoneySection(
+    onClick : () -> Unit
+) {
     Card(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable { onClick() },
 //        colors = CardDefaults.cardColors(
 //            containerColor = MaterialTheme.colorScheme.tertiaryContainer
 //        )
@@ -60,7 +65,7 @@ fun ReceiveMoneySection() {
                     )
                     WidthSpacer(6)
                     Text(
-                        text = "UPI ID :anandbhalerao@abc",
+                        text = "UPI ID :${Constants.PayerDetails.UPI_ID}",
                         fontWeight = FontWeight.Thin
                     )
                 }
