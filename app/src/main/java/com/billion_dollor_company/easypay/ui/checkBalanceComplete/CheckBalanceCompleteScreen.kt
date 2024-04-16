@@ -1,12 +1,18 @@
 package com.billion_dollor_company.easypay.ui.checkBalanceComplete
 
 import android.graphics.Color
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -29,6 +35,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -45,6 +52,7 @@ import com.billion_dollor_company.easypay.R
 import com.billion_dollor_company.easypay.ui.components.HeightSpacer
 import com.billion_dollor_company.easypay.ui.transactionComplete.TransactionCompleteViewModel
 import com.billion_dollor_company.easypay.util.Constants
+import com.billion_dollor_company.easypay.util.Helper
 import com.billion_dollor_company.easypay.util.Screen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -74,7 +82,7 @@ fun CheckBalanceCompleteScreen(
             Surface(shadowElevation = 3.dp) {
                 TopAppBar(
                     title = {
-                        Text(text = "Account Info")
+                        Text(text = "Account Balance")
                     },
                     navigationIcon = {
                         IconButton(
@@ -133,111 +141,99 @@ fun CheckBalanceCompleteScreen(
                     ConstraintLayout(
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        val (moneyAnimation, balanceSection, userInfoSection) = createRefs()
-
-                        LottieAnimation(
-                            composition = moneyComposition,
-                            iterations = LottieConstants.IterateForever,
+                        val (infoSection, doneButton) = createRefs()
+                        ConstraintLayout(
                             modifier = Modifier
-                                .size(250.dp)
-                                .constrainAs(moneyAnimation) {
+                                .fillMaxWidth()
+                                .constrainAs(infoSection) {
                                     start.linkTo(parent.start)
                                     end.linkTo(parent.end)
                                     top.linkTo(parent.top)
-                                }
-                        )
-
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .constrainAs(balanceSection) {
-                                    start.linkTo(parent.start)
-                                    end.linkTo(parent.end)
-                                    top.linkTo(moneyAnimation.bottom)
-                                },
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-
-                            Text(
-                                text = "Bank Balance is:",
-                                style = MaterialTheme.typography.titleLarge.copy(
-                                    textAlign = TextAlign.Center,
-                                )
-                            )
-                            HeightSpacer(8)
-                            Text(
-                                text = "₹ ${viewModel.getMessage()}",
-                                style = MaterialTheme.typography.displayMedium.copy(
-                                    textAlign = TextAlign.Center,
-                                    fontWeight = FontWeight.ExtraBold
-                                )
-                            )
-                        }
-
-                        Surface(
-                            shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
-                            color = MaterialTheme.colorScheme.primaryContainer,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 36.dp)
-                                .constrainAs(userInfoSection) {
-                                    start.linkTo(parent.start)
-                                    end.linkTo(parent.end)
-                                    top.linkTo(balanceSection.bottom)
-                                    bottom.linkTo(parent.bottom)
-                                    height = Dimension.fillToConstraints
+                                    bottom.linkTo(doneButton.top)
                                 }
                         ) {
-                            ConstraintLayout(
+                            val (moneyAnimation, balanceSection, userInfoSection) = createRefs()
+                            LottieAnimation(
+                                composition = moneyComposition,
+                                iterations = LottieConstants.IterateForever,
                                 modifier = Modifier
-                                    .fillMaxSize()
+                                    .size(250.dp)
+                                    .constrainAs(moneyAnimation) {
+                                        start.linkTo(parent.start)
+                                        end.linkTo(parent.end)
+                                        top.linkTo(parent.top)
+                                    }
+                            )
+
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .constrainAs(balanceSection) {
+                                        start.linkTo(parent.start)
+                                        end.linkTo(parent.end)
+                                        top.linkTo(moneyAnimation.bottom,18.dp)
+                                    },
+                                horizontalAlignment = Alignment.CenterHorizontally
                             ) {
-                                val (info, button) = createRefs()
-                                Column(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .padding(top = 16.dp)
-                                        .padding(horizontal = 16.dp)
-                                        .constrainAs(info) {
-                                            start.linkTo(parent.start)
-                                            end.linkTo(parent.end)
-                                            top.linkTo(parent.top)
-                                        }
-                                ) {
-                                    UserInfoTiles(
-                                        title = "Full Name:",
-                                        info = Constants.PayerDetails.FULL_NAME
-                                    )
-                                    UserInfoTiles(
-                                        title = "Bank Name:",
-                                        info = Constants.PayerDetails.BANK_NAME
-                                    )
-                                    UserInfoTiles(
-                                        title = "Account No:",
-                                        info = Constants.PayerDetails.ACCOUNT_NO
-                                    )
-                                    UserInfoTiles(
-                                        title = "UPI ID:",
-                                        info = Constants.PayerDetails.UPI_ID
-                                    )
 
-                                }
-
-                                Button(
-                                    onClick = { onBackClick() },
-                                    modifier = Modifier
-                                        .padding(16.dp)
-                                        .fillMaxWidth()
-                                        .constrainAs(button) {
-                                            start.linkTo(parent.start)
-                                            end.linkTo(parent.end)
-                                            bottom.linkTo(parent.bottom)
-                                        }
-                                ) {
-                                    Text(text = "Done")
-                                }
+                                Text(
+                                    text = "Bank account balance fetched successfully",
+                                    style = MaterialTheme.typography.titleLarge.copy(
+                                        textAlign = TextAlign.Center,
+                                    )
+                                )
+                                HeightSpacer(8)
+                                Text(
+                                    text = "₹ ${Helper.getFormattedAmount(viewModel.getMessage())}",
+                                    style = MaterialTheme.typography.displayMedium.copy(
+                                        textAlign = TextAlign.Center,
+                                        fontWeight = FontWeight.ExtraBold
+                                    )
+                                )
                             }
 
+                            Column(
+                                modifier = Modifier
+                                    .padding(top = 16.dp)
+                                    .padding(horizontal = 16.dp)
+                                    .constrainAs(userInfoSection) {
+                                        start.linkTo(parent.start)
+                                        end.linkTo(parent.end)
+                                        top.linkTo(balanceSection.bottom, 20.dp)
+                                    },
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Image(
+                                        painter = painterResource(viewModel.getBankIcon()),
+                                        contentDescription = "Bank Icon",
+                                        modifier = Modifier
+                                            .size(20.dp)
+                                    )
+                                    Spacer(modifier = Modifier.width(12.dp))
+                                    Text(
+                                        text = Constants.PayerDetails.BANK_NAME + " - " + Constants.PayerDetails.ACCOUNT_NO.subSequence(
+                                            Constants.PayerDetails.ACCOUNT_NO.length - 4,
+                                            Constants.PayerDetails.ACCOUNT_NO.length
+                                        )
+                                    )
+                                }
+                            }
+                        }
+                        Button(
+                            onClick = { onBackClick() },
+                            modifier = Modifier
+                                .padding(16.dp)
+                                .fillMaxWidth()
+                                .constrainAs(doneButton) {
+                                    start.linkTo(parent.start)
+                                    end.linkTo(parent.end)
+                                    bottom.linkTo(parent.bottom)
+                                }
+                        ) {
+                            Text(text = "Done")
                         }
                     }
                 } else {
@@ -245,21 +241,7 @@ fun CheckBalanceCompleteScreen(
                         modifier = Modifier
                             .fillMaxSize()
                     ) {
-                        val (backIcon, message) = createRefs()
-
-                        IconButton(
-                            onClick = { onBackClick() },
-                            modifier = Modifier
-                                .constrainAs(backIcon) {
-                                    start.linkTo(parent.start, 12.dp)
-                                    top.linkTo(parent.top, 28.dp)
-                                }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.ArrowBack,
-                                contentDescription = "Back icon"
-                            )
-                        }
+                        val (message) = createRefs()
 
                         Column(
                             modifier = Modifier
@@ -273,13 +255,13 @@ fun CheckBalanceCompleteScreen(
                         ) {
                             LottieAnimation(
                                 composition = failedComposition,
-                                iterations = LottieConstants.IterateForever,
+                                iterations = 1,
                                 modifier = Modifier
                                     .size(250.dp)
                             )
-                            HeightSpacer(12)
+                            HeightSpacer(36)
                             Text(
-                                text = viewModel.getMessage(),
+                                text = "Bank account balance fetch failed.\n" + viewModel.getMessage(),
                                 style = MaterialTheme.typography.titleLarge.copy(textAlign = TextAlign.Center)
                             )
                         }
@@ -287,26 +269,5 @@ fun CheckBalanceCompleteScreen(
                 }
             }
         }
-    }
-}
-@Composable
-fun UserInfoTiles(
-    title: String,
-    info: String
-) {
-    Column {
-
-        Text(
-            text = title,
-            style = MaterialTheme.typography.titleSmall
-        )
-        HeightSpacer(2)
-        Text(
-            text = info,
-            style = MaterialTheme.typography.titleMedium.copy(
-                fontWeight = FontWeight.Bold
-            )
-        )
-        HeightSpacer(12)
     }
 }

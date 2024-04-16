@@ -29,11 +29,11 @@ fun MoreSection(
     seeHistoryClick : () -> Unit = {},
     contactUsClick : () -> Unit = {}
 ) {
-    MoreItem(
-        title = "Check Balance",
-        icon = Icons.Default.AccountBalanceWallet,
-        onClick = checkBalanceClick
-    )
+//    MoreItem(
+//        title = "Check Balance",
+//        icon = Icons.Default.AccountBalanceWallet,
+//        onClick = checkBalanceClick
+//    )
 
     MoreItem(
         title = "PSP IP Address",

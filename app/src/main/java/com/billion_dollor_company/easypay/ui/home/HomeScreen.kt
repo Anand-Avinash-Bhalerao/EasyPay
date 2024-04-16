@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.QrCodeScanner
+import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -16,6 +17,7 @@ import com.billion_dollor_company.easypay.models.RecentInteractionInfo
 import com.billion_dollor_company.easypay.ui.components.CommonScaffold
 import com.billion_dollor_company.easypay.ui.components.HeightSpacer
 import com.billion_dollor_company.easypay.ui.components.IPAddressChangeDialog
+import com.billion_dollor_company.easypay.ui.home.components.BottomSection
 import com.billion_dollor_company.easypay.ui.home.components.CompanyLogo
 import com.billion_dollor_company.easypay.ui.home.components.CreditCard
 import com.billion_dollor_company.easypay.ui.home.components.MoreSection
@@ -56,7 +58,10 @@ fun HomeScreen(
         )
         HeightSpacer()
 
-        PaymentButtonsRow(goScanQR)
+        PaymentButtonsRow(
+            goScanQR,
+            onCheckBalanceClicked
+        )
         HeightSpacer()
 
 
@@ -76,7 +81,6 @@ fun HomeScreen(
             mutableStateOf(false)
         }
         MoreSection(
-            checkBalanceClick = onCheckBalanceClicked,
             changeIPClick = {
                 isDialogVisible = !isDialogVisible
             }
@@ -95,6 +99,10 @@ fun HomeScreen(
 
         }
         HeightSpacer()
+
+        Divider()
+
+        BottomSection()
 
     }
 }

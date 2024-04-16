@@ -3,6 +3,7 @@ package com.billion_dollor_company.easypay.util
 import android.net.InetAddresses
 import android.os.Build
 import android.util.Patterns
+import java.text.DecimalFormat
 
 object Helper {
 
@@ -24,6 +25,12 @@ object Helper {
         } else {
             Patterns.IP_ADDRESS.matcher(ip).matches()
         }
+    }
+
+    fun getFormattedAmount(amountString : String) : String {
+        val formatter = DecimalFormat("##,##,##,##,###.##")
+        val number = amountString.toDouble()
+        return formatter.format(number)
     }
 
 }

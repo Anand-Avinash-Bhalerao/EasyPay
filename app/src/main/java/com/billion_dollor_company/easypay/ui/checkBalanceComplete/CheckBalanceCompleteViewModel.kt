@@ -3,6 +3,7 @@ package com.billion_dollor_company.easypay.ui.checkBalanceComplete
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.billion_dollor_company.easypay.R
 import com.billion_dollor_company.easypay.api.CheckBalanceApi
 import com.billion_dollor_company.easypay.api.StartTransactionApi
 import com.billion_dollor_company.easypay.models.checkBalance.CheckBalanceReqInfo
@@ -63,6 +64,17 @@ class CheckBalanceCompleteViewModel @Inject constructor(
             }
         }
     }
+
+    fun getBankIcon() : Int {
+        return when(Constants.PayerDetails.BANK_NAME.lowercase()){
+            "state bank of india" -> R.drawable.sbi
+            "icici" -> R.drawable.icici
+            "idbi" -> R.drawable.idbi
+            "axis" -> R.drawable.axis
+            else -> R.drawable.sbi
+        }
+    }
+
 
     fun getStatus() = fetchStatus
 

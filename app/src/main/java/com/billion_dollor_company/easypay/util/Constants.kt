@@ -50,19 +50,20 @@ object Constants {
 
     object Server {
         object PspServer {
-//            const val BASE_URL = "http://10.0.2.2:16000/psp/"
-            const val BASE_URL = "http://192.168.1.3:16000/psp/"
+            //            const val BASE_URL = "http://10.0.2.2:16000/psp/"
+            const val BASE_URL = "http://192.168.1.9:16000/psp/"
             const val USER_INFO_URL = "accountInfo"
             const val TRANSACTION_URL = "transaction"
             const val CHECK_BALANCE_URL = "checkBalance"
 
             fun getBaseURLArray() = listOf("http://", "/psp")
+            fun getBaseURL(ipAddress: String) = "http://$ipAddress:16000/psp/"
         }
 
 
     }
 
-    object UserInfo{
+    object UserInfo {
         const val UPI_ID = "upiID"
 
         const val ENCRYPTED_PASSWORD = "encryptedPassword"

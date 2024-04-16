@@ -1,16 +1,25 @@
 package com.billion_dollor_company.easypay.di
 
 import android.util.Log
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.platform.LocalContext
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.billion_dollor_company.easypay.api.CheckBalanceApi
 import com.billion_dollor_company.easypay.api.StartTransactionApi
 import com.billion_dollor_company.easypay.api.UserInfoApi
 import com.billion_dollor_company.easypay.models.PSPServerInfo
+import com.billion_dollor_company.easypay.pref.PspIPAddressPref
 import com.billion_dollor_company.easypay.util.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -23,13 +32,22 @@ class NetworkModule {
     @OptIn(DelicateCoroutinesApi::class)
     @Singleton
     @Provides
-    fun providesRetrofit(serverInfo : PSPServerInfo): Retrofit {
-        Log.d(Constants.TAG, "The server info is: "+serverInfo.ipAddress)
+    fun providesRetrofit(
+        datastore: DataStore<Preferences>
+    ): Retrofit {
+
+        var ipAddress = ""
+        runBlocking {
+            ipAddress = datastore.data.first()[Constants.Preferences.IP_KEY] ?: ""
+        }
+        val url = Constants.Server.PspServer.getBaseURL(ipAddress)
+        Log.d(Constants.TAG, "the ip address is $ipAddress and the url is $url")
         return Retrofit
             .Builder()
-            .baseUrl(Constants.Server.PspServer.BASE_URL)
+            .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
     }
 
     @Singleton

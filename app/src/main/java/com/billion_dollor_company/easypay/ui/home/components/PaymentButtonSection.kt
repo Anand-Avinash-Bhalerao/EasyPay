@@ -4,13 +4,16 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.AlternateEmail
 import androidx.compose.material.icons.filled.SendToMobile
+import androidx.compose.material.icons.filled.Wallet
 import androidx.compose.material.icons.outlined.Contacts
 import androidx.compose.material.icons.outlined.QrCodeScanner
 import androidx.compose.material3.Card
@@ -30,7 +33,8 @@ import com.billion_dollor_company.easypay.ui.components.HeightSpacer
 
 @Composable
 fun PaymentButtonsRow(
-    goScanQR: () -> Unit
+    goScanQR: () -> Unit,
+    checkBalanceClick : () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -51,17 +55,18 @@ fun PaymentButtonsRow(
                 onClick = goScanQR,
             )
             PaymentButton(
-                imageVector = Icons.Outlined.Contacts,
-                text = "Pay contacts",
-            )
-            PaymentButton(
                 imageVector = Icons.Default.SendToMobile,
-                text = "Pay number",
+                text = "Pay to number",
             )
 
             PaymentButton(
                 imageVector = Icons.Default.AlternateEmail,
-                text = "Pay UPI ID",
+                text = "Pay to UPI ID",
+            )
+            PaymentButton(
+                imageVector = Icons.Default.AccountBalanceWallet,
+                text = "Check Balance",
+                onClick = checkBalanceClick
             )
         }
     }
@@ -77,6 +82,7 @@ fun PaymentButton(
 
     Column(
         modifier = modifier
+            .fillMaxHeight()
             .width(78.dp)
             .clickable {
                 onClick()

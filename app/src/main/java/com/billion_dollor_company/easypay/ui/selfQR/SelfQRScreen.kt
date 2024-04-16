@@ -10,12 +10,16 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,94 +42,94 @@ import com.lightspark.composeqr.DotShape
 import com.lightspark.composeqr.QrCodeColors
 import com.lightspark.composeqr.QrCodeView
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SelfQRScreen(
     onBackClick: () -> Unit
 ) {
     val viewModel: SelfQRViewModel = hiltViewModel()
-    Surface {
-        ConstraintLayout(
+
+    Scaffold(
+        topBar = {
+            Surface(shadowElevation = 3.dp) {
+                TopAppBar(
+                    title = {
+                        Text(text = "Your QR Code")
+                    },
+                    navigationIcon = {
+                        IconButton(
+                            onClick = {
+                                onBackClick()
+                            }
+                        ) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = "Back"
+                            )
+                        }
+                    },
+                )
+            }
+        },
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        Surface(
             modifier = Modifier
+                .padding(it)
                 .fillMaxSize()
         ) {
-
-
-            val (backIcon, qr, heading, infoSection, alertSection) = createRefs()
-
-            IconButton(
-                onClick = { onBackClick() },
+            ConstraintLayout(
                 modifier = Modifier
-                    .padding(top = 28.dp, start = 12.dp)
-                    .constrainAs(backIcon) {
-                        start.linkTo(parent.start)
-                        top.linkTo(parent.top)
-                    }
+                    .fillMaxSize()
             ) {
-                Icon(
-                    imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "Back",
-                    Modifier.size(30.dp)
-                )
-            }
+                val (qr, infoSection, alertSection) = createRefs()
 
-            Text(
-                text = "Your QR Code",
-                style = MaterialTheme.typography.titleLarge.copy(
-                    fontWeight = FontWeight.Bold
-                ),
-                modifier = Modifier
-                    .padding(top = 36.dp)
-                    .constrainAs(heading) {
+                AlertSection(modifier = Modifier
+                    .constrainAs(alertSection) {
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
                         top.linkTo(parent.top)
                     }
-            )
+                )
 
-            AlertSection(modifier = Modifier
-                .constrainAs(alertSection) {
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                    top.linkTo(heading.bottom, 16.dp)
+                Column(
+                    modifier = Modifier
+                        .constrainAs(infoSection) {
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                            top.linkTo(alertSection.bottom, 24.dp)
+                        },
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = (Constants.PayerDetails.FIRST_NAME + " " + Constants.PayerDetails.LAST_NAME).uppercase(),
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                    HeightSpacer(6)
+                    Text(
+                        text = Constants.PayerDetails.UPI_ID,
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                    HeightSpacer(6)
+                    Text(
+                        text = "+91 "+Constants.PayerDetails.PHONE_NO,
+                        style = MaterialTheme.typography.titleLarge
+                    )
                 }
-            )
 
-            Column(
-                modifier = Modifier
-                    .constrainAs(infoSection) {
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        top.linkTo(alertSection.bottom, 24.dp)
-                    },
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = (Constants.PayerDetails.FIRST_NAME + " " + Constants.PayerDetails.LAST_NAME).uppercase(),
-                    style = MaterialTheme.typography.titleLarge
-                )
-                HeightSpacer(6)
-                Text(
-                    text = Constants.PayerDetails.UPI_ID,
-                    style = MaterialTheme.typography.titleLarge
-                )
-                HeightSpacer(6)
-                Text(
-                    text = Constants.PayerDetails.PHONE_NO,
-                    style = MaterialTheme.typography.titleLarge
-                )
-            }
-
-            Column(
-                modifier = Modifier
-                    .constrainAs(qr) {
-                        top.linkTo(infoSection.bottom)
-                        bottom.linkTo(parent.bottom)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    },
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                GetQRCode()
+                Column(
+                    modifier = Modifier
+                        .constrainAs(qr) {
+                            top.linkTo(infoSection.bottom)
+                            bottom.linkTo(parent.bottom)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                        },
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    GetQRCode()
+                }
             }
         }
     }
@@ -141,7 +145,7 @@ fun GetQRCode() {
         modifier = Modifier.size(300.dp),
         colors = QrCodeColors(
             background = MaterialTheme.colorScheme.surface,
-            foreground = Color.White
+            foreground = MaterialTheme.colorScheme.onBackground
         ),
         dotShape = DotShape.Circle
     ) {
@@ -155,7 +159,7 @@ fun GetQRCode() {
             BasicText(
                 text = "₹",
                 style = TextStyle.Default.copy(
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.onBackground,
                     fontSize = 42.sp,
                     fontWeight = FontWeight.ExtraBold,
                     fontStyle = FontStyle.Italic,
