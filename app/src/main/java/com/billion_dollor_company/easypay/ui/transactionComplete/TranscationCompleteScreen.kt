@@ -49,6 +49,7 @@ import com.billion_dollor_company.easypay.R
 import com.billion_dollor_company.easypay.ui.amount.PayeeDetailsSections
 import com.billion_dollor_company.easypay.ui.components.HeightSpacer
 import com.billion_dollor_company.easypay.util.Constants
+import com.billion_dollor_company.easypay.util.Helper
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -144,7 +145,8 @@ fun TransactionCompleteScreen(
                 text =
                 if (transactionStatus == Constants.Values.LOADING)
                     "Processing Transaction..\nPlease don't press back or close the app!"
-                else viewModel.getTransactionMessage(),
+                else if (transactionStatus == Constants.Values.SUCCESS) viewModel.getTransactionMessage()
+                else "Payment Failed!\n${viewModel.getTransactionMessage()}",
                 style =
                 if (transactionStatus == Constants.Values.LOADING)
                     MaterialTheme.typography.titleMedium.copy(
@@ -226,7 +228,7 @@ fun TransactionDetailsSections(
         )
         HeightSpacer(4)
         Text(
-            text = "₹ " + viewModel.getTransferAmount(),
+            text = "₹ " + Helper.getFormattedAmount(viewModel.getTransferAmount()),
             style = MaterialTheme.typography.displaySmall.copy(
                 fontWeight = FontWeight.Bold
             )
