@@ -13,3 +13,7 @@ sealed class Screen(val route :String){
     object SelfQRScreen : Screen("selfQRScreen")
 }
 
+sealed class Screens {
+    data object Home : Screens()
+}
+
