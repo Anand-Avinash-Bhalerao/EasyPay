@@ -2,6 +2,7 @@ package com.billion_dollor_company.easypay.ui.checkBalanceComplete
 
 import android.graphics.Color
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -141,89 +142,76 @@ fun CheckBalanceCompleteScreen(
                     ConstraintLayout(
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        val (infoSection, doneButton) = createRefs()
-                        ConstraintLayout(
+                        val (moneyAnimation, infoSection, doneButton) = createRefs()
+                        val middleGuideline = createGuidelineFromTop(0.4f)
+
+                        LottieAnimation(
+                            composition = moneyComposition,
+                            iterations = LottieConstants.IterateForever,
+                            modifier = Modifier
+                                .size(250.dp)
+                                .constrainAs(moneyAnimation) {
+                                    start.linkTo(parent.start)
+                                    end.linkTo(parent.end)
+                                    top.linkTo(parent.top,24.dp)
+                                    bottom.linkTo(infoSection.top)
+                                }
+                        )
+
+
+                        Column(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .constrainAs(infoSection) {
                                     start.linkTo(parent.start)
                                     end.linkTo(parent.end)
-                                    top.linkTo(parent.top)
+                                    top.linkTo(middleGuideline)
                                     bottom.linkTo(doneButton.top)
-                                }
+                                },
+                            horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            val (moneyAnimation, balanceSection, userInfoSection) = createRefs()
-                            LottieAnimation(
-                                composition = moneyComposition,
-                                iterations = LottieConstants.IterateForever,
-                                modifier = Modifier
-                                    .size(250.dp)
-                                    .constrainAs(moneyAnimation) {
-                                        start.linkTo(parent.start)
-                                        end.linkTo(parent.end)
-                                        top.linkTo(parent.top)
-                                    }
+
+                            Text(
+                                text = "Bank account balance fetched successfully",
+                                style = MaterialTheme.typography.titleLarge.copy(
+                                    textAlign = TextAlign.Center,
+                                )
                             )
-
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .constrainAs(balanceSection) {
-                                        start.linkTo(parent.start)
-                                        end.linkTo(parent.end)
-                                        top.linkTo(moneyAnimation.bottom,18.dp)
-                                    },
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ) {
-
-                                Text(
-                                    text = "Bank account balance fetched successfully",
-                                    style = MaterialTheme.typography.titleLarge.copy(
-                                        textAlign = TextAlign.Center,
-                                    )
+                            HeightSpacer(8)
+                            Text(
+                                text = "₹ ${Helper.getFormattedAmount(viewModel.getMessage())}",
+                                style = MaterialTheme.typography.displayMedium.copy(
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.ExtraBold
                                 )
-                                HeightSpacer(8)
+                            )
+                            HeightSpacer(16)
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(viewModel.getBankIcon()),
+                                    contentDescription = "Bank Icon",
+                                    modifier = Modifier
+                                        .size(20.dp)
+                                )
+                                Spacer(modifier = Modifier.width(12.dp))
                                 Text(
-                                    text = "₹ ${Helper.getFormattedAmount(viewModel.getMessage())}",
-                                    style = MaterialTheme.typography.displayMedium.copy(
-                                        textAlign = TextAlign.Center,
-                                        fontWeight = FontWeight.ExtraBold
+                                    text = Constants.PayerDetails.BANK_NAME + " - " + Constants.PayerDetails.ACCOUNT_NO.subSequence(
+                                        Constants.PayerDetails.ACCOUNT_NO.length - 4,
+                                        Constants.PayerDetails.ACCOUNT_NO.length
                                     )
                                 )
                             }
 
-                            Column(
-                                modifier = Modifier
-                                    .padding(top = 16.dp)
-                                    .padding(horizontal = 16.dp)
-                                    .constrainAs(userInfoSection) {
-                                        start.linkTo(parent.start)
-                                        end.linkTo(parent.end)
-                                        top.linkTo(balanceSection.bottom, 20.dp)
-                                    },
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ) {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Image(
-                                        painter = painterResource(viewModel.getBankIcon()),
-                                        contentDescription = "Bank Icon",
-                                        modifier = Modifier
-                                            .size(20.dp)
-                                    )
-                                    Spacer(modifier = Modifier.width(12.dp))
-                                    Text(
-                                        text = Constants.PayerDetails.BANK_NAME + " - " + Constants.PayerDetails.ACCOUNT_NO.subSequence(
-                                            Constants.PayerDetails.ACCOUNT_NO.length - 4,
-                                            Constants.PayerDetails.ACCOUNT_NO.length
-                                        )
-                                    )
-                                }
-                            }
                         }
+
+
                         Button(
-                            onClick = { onBackClick() },
+                            onClick = {
+                                onBackClick()
+                            },
                             modifier = Modifier
                                 .padding(16.dp)
                                 .fillMaxWidth()
