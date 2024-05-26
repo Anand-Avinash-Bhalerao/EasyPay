@@ -61,9 +61,12 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CheckBalanceCompleteScreen(
+    passedData: Screen.CheckBalanceCompleteScreen,
     onBackClick: () -> Unit
 ) {
     val viewModel: CheckBalanceCompleteViewModel = hiltViewModel()
+    viewModel.init(passedData)
+
     var fetchStatus by remember {
         mutableStateOf(viewModel.getStatus())
     }
@@ -153,7 +156,7 @@ fun CheckBalanceCompleteScreen(
                                 .constrainAs(moneyAnimation) {
                                     start.linkTo(parent.start)
                                     end.linkTo(parent.end)
-                                    top.linkTo(parent.top,24.dp)
+                                    top.linkTo(parent.top, 24.dp)
                                     bottom.linkTo(infoSection.top)
                                 }
                         )

@@ -1,15 +1,14 @@
 package com.billion_dollor_company.easypay.ui.transactionComplete
 
 import android.util.Log
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.billion_dollor_company.easypay.api.StartTransactionApi
-import com.billion_dollor_company.easypay.api.UserInfoApi
 import com.billion_dollor_company.easypay.models.transaction.TransactionReqInfo
 import com.billion_dollor_company.easypay.models.transaction.TransactionResInfo
 import com.billion_dollor_company.easypay.util.Constants
 import com.billion_dollor_company.easypay.util.Helper
+import com.billion_dollor_company.easypay.util.Screen
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,18 +24,13 @@ class TransactionCompleteViewModel @Inject constructor(
     @Inject
     lateinit var startTransactionApi: StartTransactionApi
 
-    private val payeeUpiID = savedStateHandle.get<String>(Constants.PayeeInfo.UPI_ID)!!
-    private val payeeFullName = savedStateHandle.get<String>(Constants.PayeeInfo.FULL_NAME)!!
-
-    private val payerUpiID = savedStateHandle.get<String>(Constants.PayerInfo.UPI_ID)!!
-    private val payerBankName = savedStateHandle.get<String>(Constants.PayerInfo.BANK_NAME)!!
-    private val payerAccountNo = savedStateHandle.get<String>(Constants.PayerInfo.ACCOUNT_NO)!!
-
-
-    private val encryptedPassword = Helper.decodeSpecialCharString(
-        savedStateHandle.get<String>(Constants.Values.ENCRYPTED_PASSWORD)!!
-    )
-    private val amount = savedStateHandle.get<String>(Constants.Values.AMOUNT)!!
+    private var payeeUpiID = ""
+    private var payeeFullName = ""
+    private var payerUpiID = ""
+    private var payerBankName = ""
+    private var payerAccountNo = ""
+    private var encryptedPassword = ""
+    private var amount = ""
 
     private var transactionStatus = Constants.Values.LOADING
     private var transactionMessage = ""
@@ -59,9 +53,9 @@ class TransactionCompleteViewModel @Inject constructor(
                 val response = startTransactionApi.startTransaction(transactionInfo)
                 // Check the response and return true or false accordingly
 
-                var statusInfo : TransactionResInfo = if (response.isSuccessful) {
+                var statusInfo: TransactionResInfo = if (response.isSuccessful) {
                     response.body()!!
-                }else{
+                } else {
                     val gson = Gson()
                     val type = object : TypeToken<TransactionResInfo>() {}.type
                     gson.fromJson(response.errorBody()!!.charStream(), type)
@@ -82,8 +76,18 @@ class TransactionCompleteViewModel @Inject constructor(
 
     fun getTransactionMessage(): String = transactionMessage
 
-    fun getPayeeName() : String = payeeFullName
+    fun getPayeeName(): String = payeeFullName
 
-    fun getPayeeUpiID() : String = payeeUpiID
-    fun getTransferAmount() : String = amount
+    fun getPayeeUpiID(): String = payeeUpiID
+    fun getTransferAmount(): String = amount
+
+    fun init(passedData: Screen.TransactionCompleteScreen) {
+        payeeUpiID = passedData.payeeUpiID
+        payeeFullName = passedData.payeeFullName
+        payerUpiID = passedData.payerUpiID
+        payerBankName = passedData.payerBankName
+        payerAccountNo = passedData.payerAccountNumber
+        encryptedPassword = passedData.encryptedPassword
+        amount = passedData.amount
+    }
 }

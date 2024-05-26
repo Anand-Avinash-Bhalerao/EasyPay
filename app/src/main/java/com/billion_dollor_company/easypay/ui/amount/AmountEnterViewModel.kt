@@ -8,6 +8,7 @@ import com.billion_dollor_company.easypay.api.UserInfoApi
 import com.billion_dollor_company.easypay.models.PinCaptureReqInfo
 import com.billion_dollor_company.easypay.models.UserInfoReq
 import com.billion_dollor_company.easypay.util.Constants
+import com.billion_dollor_company.easypay.util.Screen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.DecimalFormat
 import javax.inject.Inject
@@ -22,10 +23,26 @@ class AmountEnterViewModel @Inject constructor(
     lateinit var userInfoApi: UserInfoApi
 
     // this data is passed by the navigation components
-    val payeeName = savedStateHandle.get<String>(Constants.PayeeInfo.FULL_NAME)!!
-    val payeePhoneNo = savedStateHandle.get<String>(Constants.PayeeInfo.PHONE_NO)!!
-    val payeeUpiID = savedStateHandle.get<String>(Constants.PayeeInfo.UPI_ID)!!
-    val payeeImageID = savedStateHandle.get<Int>(Constants.PayeeInfo.IMAGE_ID)!!
+    private var payeeName = ""
+    private var payeePhoneNo = ""
+    private var payeeUpiID = ""
+    private var payeeImageID = 0
+
+
+    fun setPassedData(passedData: Screen.AmountEnterScreen) {
+        payeeName = passedData.fullName
+        payeePhoneNo = passedData.phoneNo
+        payeeUpiID = passedData.upiID
+        payeeImageID = passedData.imageID
+    }
+
+
+    // create getters for the four variables above
+    fun getPayeeName(): String = payeeName
+    fun getPayeePhoneNo(): String = payeePhoneNo
+    fun getPayeeUpiID(): String = payeeUpiID
+    fun getPayeeImageID(): Int = payeeImageID
+
 
     // used for storing the amount entered by the user.
     private var amountEntered = mutableStateOf("")
@@ -37,7 +54,7 @@ class AmountEnterViewModel @Inject constructor(
         val payeeDetails = userInfoApi.getUserInfo(reqObject).body()!!
 
         var payeeFullname = "${payeeDetails.firstName} "
-        if(payeeDetails.middleName.isNotEmpty()) payeeFullname += "${payeeDetails.middleName} "
+        if (payeeDetails.middleName.isNotEmpty()) payeeFullname += "${payeeDetails.middleName} "
         payeeFullname += "${payeeDetails.lastName}"
         val details = PinCaptureReqInfo(
             payeeUpiID = payeeDetails.upiID,
@@ -47,7 +64,7 @@ class AmountEnterViewModel @Inject constructor(
             bankName = Constants.PayerDetails.BANK_NAME,
             amountToTransfer = amountEntered.value.toDouble().toString(),
 
-        )
+            )
         Log.d(Constants.TAG, "The response is $payeeDetails")
         return details
     }
@@ -57,7 +74,7 @@ class AmountEnterViewModel @Inject constructor(
     fun getAmountFormatted(): String {
         val currentText = getAmount()
         val formatter = DecimalFormat("##,##,##,##,###.##")
-        var formattedString : String
+        var formattedString: String
         if (currentText.contains(".")) {
             val indexOfDecimal = currentText.indexOf(".")
             var firstHalf = currentText.subSequence(0, indexOfDecimal).toString()

@@ -3,11 +3,10 @@ package com.billion_dollor_company.easypay.util
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
+import androidx.navigation.toRoute
 import com.billion_dollor_company.easypay.models.PayeeInfo
 import com.billion_dollor_company.easypay.ui.amount.AmountEnterScreen
 import com.billion_dollor_company.easypay.ui.checkBalance.CheckBalanceScreen
@@ -26,53 +25,49 @@ fun Navigation() {
 
     NavHost(
         navController = navController,
-        startDestination = Screen.HomeScreen.route
+        startDestination = Screen.HomeScreen
     ) {
-        composable(
-            route = Screen.HomeScreen.route
-        ) {
+        composable<Screen.HomeScreen> {
             HomeScreen(
                 goScanQR = {
-                    navController.navigate(Screen.ScanScreen.route)
-//                    navController.navigate(route = Screen.PinEnterScreen.route)
-//                    navController.navigate(route = Screen.PinEnterScreen.route)
+                    navController.navigate(Screen.ScanScreen)
                 },
                 onUserClicked = { info ->
                     var fullName = info.firstName + " "
                     if (info.middleName.isNotEmpty()) fullName += info.middleName + " "
                     fullName += info.lastName
                     navController.navigate(
-                        Screen.AmountEnterScreen.route
-                                + "/$fullName"
-                                + "/${info.mobileNo}"
-                                + "/${info.upiID}"
-                                + "/${info.userImage}"
+                        Screen.AmountEnterScreen(
+                            fullName = fullName,
+                            phoneNo = info.mobileNo,
+                            upiID = info.upiID,
+                            imageID = info.userImage
+                        )
                     )
                 },
                 onCheckBalanceClicked = {
                     navController.navigate(
-                        Screen.CheckBalancePinEnterScreen.route
+                        Screen.CheckBalancePinEnterScreen
                     )
                 },
                 onSelfQRClick = {
                     navController.navigate(
-                        Screen.SelfQRScreen.route
+                        Screen.SelfQRScreen
                     )
                 }
             )
         }
 
-        composable(
-            route = Screen.ScanScreen.route
-        ) {
+        composable<Screen.ScanScreen> {
             ScanScreen(
                 onScanned = { payeeInfo: PayeeInfo ->
                     navController.navigate(
-                        Screen.AmountEnterScreen.route
-                                + "/${payeeInfo.name}"
-                                + "/${payeeInfo.phoneNo}"
-                                + "/${payeeInfo.upiID}"
-                                + "/${payeeInfo.imageID}"
+                        Screen.AmountEnterScreen(
+                            fullName = payeeInfo.name,
+                            phoneNo = payeeInfo.phoneNo,
+                            upiID = payeeInfo.upiID,
+                            imageID = payeeInfo.imageID
+                        )
                     )
                 },
                 onCanceled = {
@@ -81,123 +76,54 @@ fun Navigation() {
             )
         }
 
-        composable(
-            route = Screen.AmountEnterScreen.route + "/{${Constants.PayeeInfo.FULL_NAME}}/{${Constants.PayeeInfo.PHONE_NO}}/{${Constants.PayeeInfo.UPI_ID}}/{${Constants.PayeeInfo.IMAGE_ID}}",
-            arguments = listOf(
-                navArgument(Constants.PayeeInfo.FULL_NAME) {
-                    type = NavType.StringType
-                },
-                navArgument(Constants.PayeeInfo.PHONE_NO) {
-                    type = NavType.StringType
-                },
-                navArgument(Constants.PayeeInfo.UPI_ID) {
-                    type = NavType.StringType
-                },
-                navArgument(Constants.PayeeInfo.IMAGE_ID) {
-                    type = NavType.IntType
-                }
-            )
-        ) {
+        composable<Screen.AmountEnterScreen> {
+            val passedData = it.toRoute<Screen.AmountEnterScreen>()
             AmountEnterScreen(
+                passedData,
                 onBackClick = {
-                    navController.navigate(route = Screen.HomeScreen.route)
+                    navController.navigate(route = Screen.HomeScreen)
                 },
                 onPayClick = { pinCaptureReqInfo ->
                     navController.navigate(
-                        route = Screen.TransactionPinEnterScreen.route
-                                + "/${pinCaptureReqInfo.payeeFullName}"
-                                + "/${pinCaptureReqInfo.payeeUpiID}"
-                                + "/${pinCaptureReqInfo.payerUpiID}"
-                                + "/${pinCaptureReqInfo.accountNo}"
-                                + "/${pinCaptureReqInfo.bankName}"
-                                + "/${pinCaptureReqInfo.amountToTransfer}"
+                        Screen.TransactionPinEnterScreen(
+                            payeeFullName = pinCaptureReqInfo.payeeFullName,
+                            payeeUpiID = pinCaptureReqInfo.payeeUpiID,
+                            payerUpiID = pinCaptureReqInfo.payerUpiID,
+                            payerAccountNumber = pinCaptureReqInfo.accountNo,
+                            payerBankName = pinCaptureReqInfo.bankName,
+                            amountToPay = pinCaptureReqInfo.amountToTransfer
+                        )
                     )
                 }
             )
         }
-        composable(
-            route = Screen.TransactionPinEnterScreen.route +
-                    "/{${Constants.PayeeInfo.FULL_NAME}}" +
-                    "/{${Constants.PayeeInfo.UPI_ID}}" +
-                    "/{${Constants.PayerInfo.UPI_ID}}" +
-                    "/{${Constants.PayerInfo.ACCOUNT_NO}}" +
-                    "/{${Constants.PayerInfo.BANK_NAME}}" +
-                    "/{${Constants.Values.AMOUNT}}",
-            arguments = listOf(
-                navArgument(Constants.PayeeInfo.FULL_NAME) {
-                    type = NavType.StringType
-                },
-                navArgument(Constants.PayeeInfo.UPI_ID) {
-                    type = NavType.StringType
-                },
-                navArgument(Constants.PayerInfo.BANK_NAME) {
-                    type = NavType.StringType
-                },
-                navArgument(Constants.PayerInfo.ACCOUNT_NO) {
-                    type = NavType.StringType
-                },
-                navArgument(Constants.Values.AMOUNT) {
-                    type = NavType.StringType
+        composable<Screen.TransactionPinEnterScreen> {
+            val passedData = it.toRoute<Screen.TransactionPinEnterScreen>()
+
+            PinCaptureScreen(
+                passedData,
+                onSubmitClick = { transactionInfo ->
+                    // since the encrypted password could contain / we need to encode it
+
+                    navController.navigate(
+                        Screen.TransactionCompleteScreen(
+                            payeeFullName = transactionInfo.payeeFullName,
+                            payeeUpiID = transactionInfo.payeeUpiID,
+                            payerUpiID = transactionInfo.payerUpiID,
+                            payerBankName = transactionInfo.payerBankName,
+                            payerAccountNumber = transactionInfo.payerAccountNo,
+                            encryptedPassword = transactionInfo.encryptedPassword,
+                            amount = transactionInfo.amountToTransfer
+                        )
+                    )
                 }
             )
-        ) {
-            PinCaptureScreen { transactionInfo ->
-
-                // since the encrypted password could contain / we need to encode it
-                val encodedPassword =
-                    Helper.encodeSpecialCharString(transactionInfo.encryptedPassword)
-
-                navController.navigate(
-                    route = Screen.TransactionCompleteScreen.route
-                            + "/${transactionInfo.payeeUpiID}"
-                            + "/${transactionInfo.payeeFullName}"
-                            + "/${transactionInfo.payerUpiID}"
-                            + "/${transactionInfo.payerBankName}"
-                            + "/${transactionInfo.payerAccountNo}"
-                            + "/${encodedPassword}"
-                            + "/${transactionInfo.amountToTransfer}"
-                )
-            }
         }
 
-        composable(
-            route = Screen.TransactionCompleteScreen.route +
-                    "/{${Constants.PayeeInfo.UPI_ID}}" +
-                    "/{${Constants.PayeeInfo.FULL_NAME}}" +
-                    "/{${Constants.PayerInfo.UPI_ID}}" +
-                    "/{${Constants.PayerInfo.BANK_NAME}}" +
-                    "/{${Constants.PayerInfo.ACCOUNT_NO}}" +
-                    "/{${Constants.Values.ENCRYPTED_PASSWORD}}" +
-                    "/{${Constants.Values.AMOUNT}}",
-            arguments = listOf(
-
-                navArgument(Constants.PayeeInfo.UPI_ID) {
-                    type = NavType.StringType
-                },
-                navArgument(Constants.PayeeInfo.FULL_NAME) {
-                    type = NavType.StringType
-                },
-                navArgument(Constants.PayerInfo.UPI_ID) {
-                    type = NavType.StringType
-                },
-
-                navArgument(Constants.PayerInfo.BANK_NAME) {
-                    type = NavType.StringType
-                },
-                navArgument(Constants.PayerInfo.ACCOUNT_NO) {
-                    type = NavType.StringType
-                },
-
-                navArgument(Constants.Values.ENCRYPTED_PASSWORD) {
-                    type = NavType.StringType
-                },
-
-                navArgument(Constants.Values.AMOUNT) {
-                    type = NavType.StringType
-                }
-            )
-        ) {
+        composable<Screen.TransactionCompleteScreen> {
+            val passedData = it.toRoute<Screen.TransactionCompleteScreen>()
             TransactionCompleteScreen(
+                passedData,
                 onBackPress = {
                     navController.navigateUp() // goes to pin screen
                     navController.navigateUp() // goes to amount enter
@@ -206,10 +132,7 @@ fun Navigation() {
             )
         }
 
-        composable(
-            route = Screen.CheckBalancePinEnterScreen.route
-
-        ) {
+        composable<Screen.CheckBalancePinEnterScreen> {
             CheckBalanceScreen { checkBalanceInfo ->
 
                 // since the encrypted password could contain / we need to encode it
@@ -217,18 +140,21 @@ fun Navigation() {
                     Helper.encodeSpecialCharString(checkBalanceInfo.encryptedPassword)
 
                 navController.navigate(
-                    route = Screen.CheckBalanceCompleteScreen.route
-                            + "/${checkBalanceInfo.upiID}"
-                            + "/${encodedPassword}"
+
+                    Screen.CheckBalanceCompleteScreen(
+                        upiID = checkBalanceInfo.upiID,
+                        encryptedPassword = encodedPassword
+                    )
                 )
             }
         }
-        composable(
-            route = Screen.CheckBalanceCompleteScreen.route +
-                    "/{${Constants.UserInfo.UPI_ID}}" +
-                    "/{${Constants.UserInfo.ENCRYPTED_PASSWORD}}"
-        ) {
+
+        composable<Screen.CheckBalanceCompleteScreen> {
+
+            val passedData = it.toRoute<Screen.CheckBalanceCompleteScreen>()
+
             CheckBalanceCompleteScreen(
+                passedData,
                 onBackClick = {
                     navController.navigateUp()
                     navController.navigateUp()
@@ -236,9 +162,7 @@ fun Navigation() {
             )
         }
 
-        composable(
-            route = Screen.SelfQRScreen.route
-        ) {
+        composable<Screen.SelfQRScreen> {
             SelfQRScreen(
                 onBackClick = {
                     navController.navigateUp()

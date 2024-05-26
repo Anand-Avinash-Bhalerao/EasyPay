@@ -1,23 +1,16 @@
 package com.billion_dollor_company.easypay.ui.transactionComplete
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -34,10 +27,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.toLowerCase
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
@@ -46,22 +36,25 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.billion_dollor_company.easypay.R
-import com.billion_dollor_company.easypay.ui.amount.PayeeDetailsSections
 import com.billion_dollor_company.easypay.ui.components.HeightSpacer
 import com.billion_dollor_company.easypay.util.Constants
 import com.billion_dollor_company.easypay.util.Helper
+import com.billion_dollor_company.easypay.util.Screen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Locale
 
 @Composable
 fun TransactionCompleteScreen(
+    passedData : Screen.TransactionCompleteScreen,
     onBackPress: () -> Unit
 ) {
 
+    val viewModel: TransactionCompleteViewModel = hiltViewModel()
+    viewModel.init(passedData)
+
     Surface {
 
-        val viewModel: TransactionCompleteViewModel = hiltViewModel()
         var transactionStatus by remember {
             mutableStateOf(viewModel.getTransactionStatus())
         }

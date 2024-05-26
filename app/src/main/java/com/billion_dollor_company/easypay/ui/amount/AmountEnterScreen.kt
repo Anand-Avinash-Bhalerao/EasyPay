@@ -41,16 +41,18 @@ import com.billion_dollor_company.easypay.models.PinCaptureReqInfo
 import com.billion_dollor_company.easypay.ui.components.HeightSpacer
 import com.billion_dollor_company.easypay.ui.components.WidthSpacer
 import com.billion_dollor_company.easypay.util.Constants
+import com.billion_dollor_company.easypay.util.Screen
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AmountEnterScreen(
+    passedData: Screen.AmountEnterScreen,
     onBackClick: () -> Unit,
-    onPayClick: (pinCaptureReqInfo : PinCaptureReqInfo) -> Unit
+    onPayClick: (pinCaptureReqInfo: PinCaptureReqInfo) -> Unit
 ) {
     val viewModel: AmountEnterViewModel = hiltViewModel()
-
+    viewModel.setPassedData(passedData)
     Scaffold(
         topBar = {
             Surface(shadowElevation = 3.dp) {
@@ -126,7 +128,7 @@ fun PayeeDetailsSections(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(id = viewModel.payeeImageID),
+            painter = painterResource(id = viewModel.getPayeeImageID()),
             contentDescription = "Payee image",
             modifier = Modifier
                 .size(100.dp)
@@ -135,18 +137,18 @@ fun PayeeDetailsSections(
         )
         HeightSpacer()
         Text(
-            text = viewModel.payeeName,
+            text = viewModel.getPayeeName(),
             style = MaterialTheme.typography.titleLarge.copy(
                 fontWeight = FontWeight.Bold
             )
         )
         HeightSpacer(6)
         Text(
-            text = "+91 ${viewModel.payeePhoneNo}",
+            text = "+91 ${viewModel.getPayeePhoneNo()}",
         )
         HeightSpacer(6)
         Text(
-            text = viewModel.payeeUpiID,
+            text = viewModel.getPayeeUpiID(),
         )
     }
 }
@@ -155,7 +157,7 @@ fun PayeeDetailsSections(
 fun AmountAndKeypadSection(
     viewModel: AmountEnterViewModel,
     modifier: Modifier = Modifier,
-    onPayClick: (transactionReqInfo : PinCaptureReqInfo) -> Unit
+    onPayClick: (transactionReqInfo: PinCaptureReqInfo) -> Unit
 ) {
     Column(
         modifier = modifier,
@@ -180,7 +182,7 @@ fun AmountAndKeypadSection(
             onClick = {
                 viewModel.viewModelScope.launch {
                     Log.d(Constants.TAG, "Before calling the fn")
-                    val details = viewModel.getDetails(viewModel.payeeUpiID)
+                    val details = viewModel.getDetails(viewModel.getPayeeUpiID())
                     Log.d(Constants.TAG, "after calling the fn")
                     onPayClick(details)
                 }

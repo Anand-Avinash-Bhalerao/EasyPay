@@ -28,6 +28,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -41,6 +42,7 @@ import com.billion_dollor_company.easypay.util.Constants
 import com.lightspark.composeqr.DotShape
 import com.lightspark.composeqr.QrCodeColors
 import com.lightspark.composeqr.QrCodeView
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -103,8 +105,14 @@ fun SelfQRScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = (Constants.PayerDetails.FIRST_NAME + " " + Constants.PayerDetails.LAST_NAME).uppercase(),
-                        style = MaterialTheme.typography.titleLarge
+                        text = (Constants.PayerDetails.FIRST_NAME + " " + Constants.PayerDetails.LAST_NAME).replaceFirstChar {
+                            if (it.isLowerCase()) it.titlecase(
+                                Locale.ROOT
+                            ) else it.toString()
+                        },
+                        style = MaterialTheme.typography.titleLarge.copy(
+                            fontWeight = FontWeight.Bold
+                        )
                     )
                     HeightSpacer(6)
                     Text(

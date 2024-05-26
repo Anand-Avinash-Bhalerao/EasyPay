@@ -12,6 +12,7 @@ import com.billion_dollor_company.easypay.models.transaction.TransactionReqInfo
 import com.billion_dollor_company.easypay.models.transaction.TransactionResInfo
 import com.billion_dollor_company.easypay.util.Constants
 import com.billion_dollor_company.easypay.util.Helper
+import com.billion_dollor_company.easypay.util.Screen
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,9 +28,7 @@ class CheckBalanceCompleteViewModel @Inject constructor(
     lateinit var checkBalanceApi: CheckBalanceApi
 
     private val upiID = Constants.PayerDetails.UPI_ID
-    private val encryptedPassword = Helper.decodeSpecialCharString(
-        savedStateHandle.get<String>(Constants.Values.ENCRYPTED_PASSWORD)!!
-    )
+    private var encryptedPassword = ""
 
     private var fetchStatus = Constants.Values.LOADING
     private var fetchMessage = ""
@@ -47,9 +46,9 @@ class CheckBalanceCompleteViewModel @Inject constructor(
                 val response = checkBalanceApi.getAccountBalance(checkBalanceReqInfo)
 
                 // Check the response and return true or false accordingly
-                var statusInfo : CheckBalanceResInfo = if (response.isSuccessful) {
+                var statusInfo: CheckBalanceResInfo = if (response.isSuccessful) {
                     response.body()!!
-                }else{
+                } else {
                     val gson = Gson()
                     val type = object : TypeToken<CheckBalanceResInfo>() {}.type
                     gson.fromJson(response.errorBody()!!.charStream(), type)
@@ -65,8 +64,8 @@ class CheckBalanceCompleteViewModel @Inject constructor(
         }
     }
 
-    fun getBankIcon() : Int {
-        return when(Constants.PayerDetails.BANK_NAME.lowercase()){
+    fun getBankIcon(): Int {
+        return when (Constants.PayerDetails.BANK_NAME.lowercase()) {
             "state bank of india" -> R.drawable.sbi
             "icici" -> R.drawable.icici
             "idbi" -> R.drawable.idbi
@@ -79,5 +78,10 @@ class CheckBalanceCompleteViewModel @Inject constructor(
     fun getStatus() = fetchStatus
 
     fun getMessage() = fetchMessage
+    fun init(passedData: Screen.CheckBalanceCompleteScreen) {
+        encryptedPassword = Helper.decodeSpecialCharString(
+            passedData.encryptedPassword
+        )
+    }
 
 }
