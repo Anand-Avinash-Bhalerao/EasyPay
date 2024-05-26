@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.billion_dollor_company.easypay.models.transaction.TransactionInfo
 import com.billion_dollor_company.easypay.util.Constants
+import com.billion_dollor_company.easypay.util.Screen
 import com.billion_dollor_company.easypay.util.cryptography.EncryptionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -16,11 +17,12 @@ class PinCaptureViewModel @Inject constructor(
 
     private var pinEntered = mutableStateOf("")
 
-    private val payeeName = savedStateHandle.get<String>(Constants.PayeeInfo.FULL_NAME)!!
-    private val payeeUpiID = savedStateHandle.get<String>(Constants.PayeeInfo.UPI_ID)!!
-    private val payerBankName = savedStateHandle.get<String>(Constants.PayerInfo.BANK_NAME)!!
-    private val payerAccountNo = savedStateHandle.get<String>(Constants.PayerInfo.ACCOUNT_NO)!!
-    private val amount = savedStateHandle.get<String>(Constants.Values.AMOUNT)!!
+    //create the above 4 variables again but with default values of ""
+    private var payeeName = ""
+    private var payeeUpiID = ""
+    private var payerBankName = ""
+    private var payerAccountNo = ""
+    private var amount = ""
 
     private val payerName = Constants.PayerDetails.FULL_NAME
     private val payerUpiID = Constants.PayerDetails.UPI_ID
@@ -43,7 +45,6 @@ class PinCaptureViewModel @Inject constructor(
     }
 
 
-
     fun setPin(newPin: String) = run {
         pinEntered.value = newPin
     }
@@ -59,6 +60,14 @@ class PinCaptureViewModel @Inject constructor(
     fun getAmount(): String = amount
 
     fun getRefID(): String = refID
+    fun setPassedData(passedData: Screen.TransactionPinEnterScreen) {
+        // set the empty variables with the passed data variables
+        payeeName = passedData.payeeFullName
+        payeeUpiID = passedData.payeeUpiID
+        payerBankName = passedData.payerBankName
+        payerAccountNo = passedData.payerAccountNumber
+        amount = passedData.amountToPay
+    }
 
 
 }

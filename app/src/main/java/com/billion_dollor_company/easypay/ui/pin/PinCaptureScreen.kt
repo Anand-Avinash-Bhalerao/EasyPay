@@ -20,14 +20,18 @@ import com.billion_dollor_company.easypay.ui.pin.components.KeypadSection
 import com.billion_dollor_company.easypay.ui.pin.components.MoneyTransferAlertSection
 import com.billion_dollor_company.easypay.ui.pin.components.PayeeInfoSection
 import com.billion_dollor_company.easypay.ui.pin.components.PayerInfoSection
+import com.billion_dollor_company.easypay.util.Screen
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PinCaptureScreen(
+    passedData: Screen.TransactionPinEnterScreen,
     onSubmitClick: (TransactionInfo) -> Unit
 ) {
     val viewModel: PinCaptureViewModel = hiltViewModel()
+    viewModel.setPassedData(passedData)
+
     Scaffold(
         modifier = Modifier.fillMaxSize()
     ) {

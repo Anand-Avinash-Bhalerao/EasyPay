@@ -1,19 +1,55 @@
 package com.billion_dollor_company.easypay.util
 
-sealed class Screen(val route :String){
-    object HomeScreen : Screen("home")
-    object ScanScreen : Screen("scan")
-    object AmountEnterScreen : Screen("amountEnter")
-    object TransactionPinEnterScreen : Screen("transactionPinEnter")
-    object TransactionCompleteScreen : Screen("transactionCompleteScreen")
+import kotlinx.serialization.Serializable
 
-    object CheckBalancePinEnterScreen : Screen("checkBalancePinEnter")
-    object CheckBalanceCompleteScreen : Screen("checkBalanceCompleteScreen")
+@Serializable
+sealed class Screen() {
 
-    object SelfQRScreen : Screen("selfQRScreen")
-}
+    @Serializable
+    data object HomeScreen : Screen()
 
-sealed class Screens {
-    data object Home : Screens()
+    @Serializable
+    data object ScanScreen : Screen()
+
+    @Serializable
+    data class AmountEnterScreen(
+        val fullName: String,
+        val phoneNo: String,
+        val upiID: String,
+        val imageID: Int
+    ) : Screen()
+
+    @Serializable
+    data class TransactionPinEnterScreen(
+        val payeeFullName: String,
+        val payeeUpiID: String,
+        val payerUpiID: String,
+        val payerBankName: String,
+        val payerAccountNumber: String,
+        val amountToPay: String
+    ) : Screen()
+
+    @Serializable
+    data class TransactionCompleteScreen(
+        val payeeUpiID: String,
+        val payeeFullName: String,
+        val payerUpiID: String,
+        val payerBankName: String,
+        val payerAccountNumber: String,
+        val encryptedPassword: String,
+        val amount: String
+    ) : Screen()
+
+    @Serializable
+    data object CheckBalancePinEnterScreen : Screen()
+
+    @Serializable
+    data class CheckBalanceCompleteScreen(
+        val upiID: String,
+        val encryptedPassword: String
+    ) : Screen()
+
+    @Serializable
+    data object SelfQRScreen : Screen()
 }
 

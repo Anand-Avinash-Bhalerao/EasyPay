@@ -10,23 +10,23 @@ object Constants {
 
 
     object PayerDetails {
-//        const val FIRST_NAME = "Anand"
-//        const val MIDDLE_NAME = "Avinash"
-//        const val LAST_NAME = "Bhalerao"
-//        val IMAGE = R.drawable.male2
-//        const val UPI_ID = "anandbhalerao@oksbi"
-//        const val ACCOUNT_NO = "SBI1000000"
-//        const val BANK_NAME = "State Bank of India"
-//        const val PHONE_NO = "9175799277"
+        const val FIRST_NAME = "Anand"
+        const val MIDDLE_NAME = "Avinash"
+        const val LAST_NAME = "Bhalerao"
+        val IMAGE = R.drawable.male2
+        const val UPI_ID = "anandbhalerao@oksbi"
+        const val ACCOUNT_NO = "SBI1000000"
+        const val BANK_NAME = "State Bank of India"
+        const val PHONE_NO = "9175799277"
 
-        const val FIRST_NAME = "Shruti"
-        const val MIDDLE_NAME = "Sanjay"
-        const val LAST_NAME = "Deokar"
-        val IMAGE = R.drawable.female1
-        const val UPI_ID = "shrutideokar@okicici"
-        const val ACCOUNT_NO = "ICICI1000000"
-        const val BANK_NAME = "ICICI"
-        const val PHONE_NO = "9325591558"
+//        const val FIRST_NAME = "Shruti"
+//        const val MIDDLE_NAME = "Sanjay"
+//        const val LAST_NAME = "Deokar"
+//        val IMAGE = R.drawable.female1
+//        const val UPI_ID = "shrutideokar@okicici"
+//        const val ACCOUNT_NO = "ICICI1000000"
+//        const val BANK_NAME = "ICICI"
+//        const val PHONE_NO = "9325591558"
 
 //        const val FIRST_NAME = "Rucha"
 //        const val MIDDLE_NAME = "Ramesh"
