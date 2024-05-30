@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -73,7 +74,7 @@ fun RecentSection(
     LazyVerticalGrid(
         columns = GridCells.Fixed(4),
         modifier = Modifier
-            .height(88.dp),
+            .height(96.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         items(list) {
@@ -107,7 +108,11 @@ fun RecentPersonItem(
         HeightSpacer(4)
         Text(
             text = person.firstName,
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium.copy(
+
+            ),
+            modifier = Modifier
+                .height(20.dp)
         )
     }
 }
