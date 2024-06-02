@@ -3,4 +3,7 @@ plugins {
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.googleDaggerHilt) apply false
+    alias(libs.plugins.android.library) apply false
+
+    alias(libs.plugins.kotlin.serialization) apply false
 }

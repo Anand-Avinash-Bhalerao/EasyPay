@@ -86,11 +86,13 @@ fun AppTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable() () -> Unit
 ) {
-    val colors = if (!useDarkTheme) {
-        LightColors
-    } else {
-        DarkColors
-    }
+//    val colors = if (!useDarkTheme) {
+//        LightColors
+//    } else {
+//        DarkColors
+//    }
+    val colors = LightColors
+
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
@@ -98,7 +100,7 @@ fun AppTheme(
 
             window.statusBarColor = colors.background.toArgb()
             window.navigationBarColor = colors.surface.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !useDarkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
         }
     }
     MaterialTheme(

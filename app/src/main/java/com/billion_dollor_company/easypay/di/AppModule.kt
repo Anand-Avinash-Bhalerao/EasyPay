@@ -7,11 +7,13 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import androidx.lifecycle.viewModelScope
 import com.billion_dollor_company.easypay.models.PSPServerInfo
 import com.billion_dollor_company.easypay.pref.PspIPAddressImpl
 import com.billion_dollor_company.easypay.pref.PspIPAddressPref
 import com.billion_dollor_company.easypay.util.Constants
+import com.billion_dollor_company.easypay.util.navigation.NavigationProvider
+import com.cl.ui.navigation.CheckBalanceApi
+import com.cl.ui.navigation.TransactionApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +23,6 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 import javax.inject.Singleton
 
 @Module
@@ -56,4 +57,11 @@ class AppModule {
             ).value
         )
     }
+
+    @Provides
+    fun provideNavigationProvider(checkBalanceApi: CheckBalanceApi, transactionApi: TransactionApi) : NavigationProvider {
+        return NavigationProvider(checkBalanceApi, transactionApi)
+    }
+
+
 }

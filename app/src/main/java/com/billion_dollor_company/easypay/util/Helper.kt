@@ -3,6 +3,7 @@ package com.billion_dollor_company.easypay.util
 import android.net.InetAddresses
 import android.os.Build
 import android.util.Patterns
+import com.billion_dollor_company.easypay.R
 import java.text.DecimalFormat
 
 object Helper {
@@ -31,6 +32,16 @@ object Helper {
         val formatter = DecimalFormat("##,##,##,##,###.##")
         val number = amountString.toDouble()
         return formatter.format(number)
+    }
+
+    fun getBankIcon(): Int {
+        return when (Constants.PayerDetails.BANK_NAME.lowercase()) {
+            "state bank of india" -> R.drawable.sbi
+            "icici" -> R.drawable.icici
+            "idbi" -> R.drawable.idbi
+            "axis" -> R.drawable.axis
+            else -> R.drawable.sbi
+        }
     }
 
 }
