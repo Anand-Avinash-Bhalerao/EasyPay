@@ -12,6 +12,7 @@ import com.billion_dollor_company.easypay.ui.transaction.amount.AmountEnterScree
 import com.billion_dollor_company.easypay.ui.transaction.scan.ScanScreen
 import com.billion_dollor_company.easypay.ui.transaction.transactionComplete.TransactionCompleteScreen
 import com.billion_dollor_company.easypay.ui.transaction.transactionRequestor.TransactionCLReqScreen
+import com.billion_dollor_company.easypay.util.Constants
 import com.billion_dollor_company.easypay.util.navigation.Screen
 import com.cl.ui.navigation.TransactionApi
 
@@ -85,7 +86,8 @@ fun NavGraphBuilder.transactionNavGraph(
                             payerUpiID = passedData.payerUpiID,
                             payerBankName = passedData.payerBankName,
                             payerAccountNumber = passedData.payerAccountNumber,
-                            amountToPay = passedData.amountToPay
+                            amountToPay = passedData.amountToPay,
+                            publicKey = Constants.Keys.NPCI_PUBLIC_KEY
                         )
                     )
                 },

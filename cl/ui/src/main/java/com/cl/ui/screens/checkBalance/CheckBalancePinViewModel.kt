@@ -5,7 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.cl.domain.useCases.EncryptPasswordUseCase
 import com.cl.ui.passedData.CheckBalancePassedData
-import com.npciCore.common.Constants
+import com.cl.ui.util.Helper
 import com.npciCore.common.models.checkBalance.CheckBalanceInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -26,10 +26,12 @@ class CheckBalancePinViewModel @Inject constructor(
 
     private val refID = "asvdahtdbgdvbwEf121sdggresa"
 
+    private var publicKey = ""
+
     fun getCheckBalanceInfo(): CheckBalanceInfo {
         return CheckBalanceInfo(
             upiID = userUpiID,
-            encryptedPassword = encryptPasswordUseCase.invoke(pinEntered.value)
+            encryptedPassword = encryptPasswordUseCase.invoke(pinEntered.value, publicKey)
         )
     }
 
@@ -49,7 +51,7 @@ class CheckBalancePinViewModel @Inject constructor(
         userUpiID = passedData.upiID
         userAccountNo = passedData.accountNo
         userBankName = passedData.bankName
-
+        publicKey = passedData.publicKey
     }
 
 }

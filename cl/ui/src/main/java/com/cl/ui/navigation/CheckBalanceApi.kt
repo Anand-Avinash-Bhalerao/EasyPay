@@ -8,6 +8,7 @@ import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.cl.ui.passedData.CheckBalancePassedData
 import com.cl.ui.screens.checkBalance.CheckBalancePinScreen
+import com.cl.ui.util.Helper
 import com.npciCore.featureApi.FeatureApi
 
 interface CheckBalanceApi : FeatureApi {
@@ -18,7 +19,9 @@ interface CheckBalanceApi : FeatureApi {
         accountNo: String,
         bankName: String,
         upiID: String,
-    ): String = "$startDestination/$upiID/$bankName/$accountNo"
+        publicKey: String,
+    ): String =
+        "$startDestination/$upiID/$bankName/$accountNo/${Helper.encodeForSpecialCharacter(publicKey)}"
 
 }
 
@@ -39,12 +42,12 @@ internal object InternalCheckBalanceApi : CheckBalanceApi {
         val startDestination = this.startDestination
         val route = this.route
         navGraphBuilder.navigation(
-            startDestination = "$startDestination/{upiID}/{bankName}/{accountNo}",
+            startDestination = "$startDestination/{upiID}/{bankName}/{accountNo}/{publicKey}",
             route = route,
 
             ) {
             composable(
-                route = "$startDestination/{upiID}/{bankName}/{accountNo}",
+                route = "$startDestination/{upiID}/{bankName}/{accountNo}/{publicKey}",
                 arguments = listOf(
                     navArgument("upiID") {
                         type = NavType.StringType
@@ -55,17 +58,22 @@ internal object InternalCheckBalanceApi : CheckBalanceApi {
                     navArgument("accountNo") {
                         type = NavType.StringType
                     },
+                    navArgument("publicKey") {
+                        type = NavType.StringType
+                    },
                 )
             ) {
 
                 val upiID = it.arguments?.getString("upiID")!!
                 val bankName = it.arguments?.getString("bankName")!!
                 val accountNo = it.arguments?.getString("accountNo")!!
+                val publicKey = it.arguments?.getString("publicKey")!!
 
                 val passedData = CheckBalancePassedData(
                     upiID = upiID,
                     bankName = bankName,
-                    accountNo = accountNo
+                    accountNo = accountNo,
+                    publicKey = Helper.decodeSpecialCharString(publicKey)
                 )
 
                 CheckBalancePinScreen(

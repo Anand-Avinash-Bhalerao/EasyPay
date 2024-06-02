@@ -8,6 +8,7 @@ import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.cl.ui.passedData.TransactionPassedData
 import com.cl.ui.screens.transaction.TransactionPinScreen
+import com.cl.ui.util.Helper
 import com.npciCore.featureApi.FeatureApi
 
 
@@ -21,9 +22,10 @@ interface TransactionApi : FeatureApi {
         payerUpiID: String,
         payerBankName: String,
         payerAccountNumber: String,
-        amountToPay: String
+        amountToPay: String,
+        publicKey: String
     ): String =
-        "$startDestination/$payeeFullName/$payeeUpiID/$payerUpiID/$payerBankName/$payerAccountNumber/$amountToPay"
+        "$startDestination/$payeeFullName/$payeeUpiID/$payerUpiID/$payerBankName/$payerAccountNumber/$amountToPay/${Helper.encodeForSpecialCharacter(publicKey)}"
 }
 
 class TransactionApiImpl : TransactionApi {
@@ -41,16 +43,12 @@ internal object InternalTransactionApi : TransactionApi {
         navController: NavHostController,
         navGraphBuilder: NavGraphBuilder
     ) {
-
-        val startDestination = this.startDestination
-        val route = this.route
-
         navGraphBuilder.navigation(
             startDestination = startDestination,
             route = route
         ) {
             composable(
-                route = "${startDestination}/{payeeFullName}/{payeeUpiID}/{payerUpiID}/{payerBankName}/{payerAccountNumber}/{amountToPay}",
+                route = "${startDestination}/{payeeFullName}/{payeeUpiID}/{payerUpiID}/{payerBankName}/{payerAccountNumber}/{amountToPay}/{publicKey}",
 
                 arguments = listOf(
                     navArgument("payeeFullName") {
@@ -70,6 +68,9 @@ internal object InternalTransactionApi : TransactionApi {
                     },
                     navArgument("amountToPay") {
                         type = NavType.StringType
+                    },
+                    navArgument("publicKey") {
+                        type = NavType.StringType
                     }
                 )
             ) {
@@ -79,6 +80,7 @@ internal object InternalTransactionApi : TransactionApi {
                 val payerBankName = it.arguments?.getString("payerBankName")!!
                 val payerAccountNumber = it.arguments?.getString("payerAccountNumber")!!
                 val amountToPay = it.arguments?.getString("amountToPay")!!
+                val publicKey = it.arguments?.getString("publicKey")!!
 
                 val passedData = TransactionPassedData(
                     payeeFullName = payeeFullName,
@@ -86,7 +88,8 @@ internal object InternalTransactionApi : TransactionApi {
                     payerUpiID = payerUpiID,
                     payerBankName = payerBankName,
                     payerAccountNumber = payerAccountNumber,
-                    amountToPay = amountToPay
+                    amountToPay = amountToPay,
+                    publicKey = Helper.decodeSpecialCharString(publicKey)
                 )
                 TransactionPinScreen(passedData = passedData) { info ->
                     navController.previousBackStackEntry?.savedStateHandle?.set(

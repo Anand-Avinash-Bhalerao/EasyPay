@@ -13,12 +13,8 @@ import dagger.hilt.components.SingletonComponent
 class DomainLayerModule {
 
     @Provides
-    fun provideEncryptionManager(): EncryptionManager =
-        EncryptionManager(DomainConstants.Keys.NPCI_PUBLIC_KEY, "NPCI public key")
-
-    @Provides
-    fun provideEncryptPasswordUseCase(encryptionManager: EncryptionManager): EncryptPasswordUseCase {
-        return EncryptPasswordUseCase(encryptionManager)
+    fun provideEncryptPasswordUseCase(): EncryptPasswordUseCase {
+        return EncryptPasswordUseCase()
     }
 
 }

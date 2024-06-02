@@ -8,6 +8,7 @@ import androidx.navigation.toRoute
 import com.billion_dollor_company.easypay.ui.checkBalance.checkBalanceComplete.CheckBalanceCompleteScreen
 import com.billion_dollor_company.easypay.ui.checkBalance.checkBalanceRequester.CheckBalanceRequesterScreen
 import com.billion_dollor_company.easypay.util.Constants
+import com.billion_dollor_company.easypay.util.Helper
 import com.billion_dollor_company.easypay.util.navigation.Screen
 import com.cl.ui.navigation.CheckBalanceApi
 
@@ -29,7 +30,8 @@ fun NavGraphBuilder.checkBalanceNavGraph(
                         checkBalanceApi.getPath(
                             upiID = Constants.PayerDetails.UPI_ID,
                             accountNo = Constants.PayerDetails.ACCOUNT_NO,
-                            bankName = Constants.PayerDetails.BANK_NAME
+                            bankName = Constants.PayerDetails.BANK_NAME,
+                            publicKey = Constants.Keys.NPCI_PUBLIC_KEY
                         )
                     )
                 },

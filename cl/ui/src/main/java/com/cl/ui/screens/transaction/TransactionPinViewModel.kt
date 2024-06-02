@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.npciCore.common.models.transaction.TransactionInfo
 import com.cl.domain.useCases.EncryptPasswordUseCase
 import com.cl.ui.passedData.TransactionPassedData
-import com.npciCore.common.Constants
+import com.cl.ui.util.Helper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -26,12 +26,12 @@ class TransactionPinViewModel @Inject constructor(
     private var amount = ""
     private var payerUpiID = ""
 
-    private val payerName = Constants.PayerDetails.FULL_NAME
-
     private val refID = "asvdahtdbgdvbwEf121sdggresa"
 
+    private var publicKey = ""
+
     fun getTransactionInfo(): TransactionInfo {
-        val encryptedPassword = encryptPasswordUseCase.invoke(pinEntered.value)
+        val encryptedPassword = encryptPasswordUseCase.invoke(pinEntered.value, publicKey)
         return TransactionInfo(
             payeeUpiID = payeeUpiID,
             payeeFullName = payeeName,
@@ -52,7 +52,6 @@ class TransactionPinViewModel @Inject constructor(
 
     fun getPayeeName(): String = payeeName
 
-    fun getPayerName(): String = payerName
     fun getPayerAccountNo(): String = payerAccountNo
     fun getPayerBankName(): String = payerBankName
 
@@ -67,6 +66,7 @@ class TransactionPinViewModel @Inject constructor(
         payerAccountNo = passedData.payerAccountNumber
         payerUpiID = passedData.payerUpiID
         amount = passedData.amountToPay
+        publicKey = Helper.decodeSpecialCharString(passedData.publicKey)
     }
 
 
