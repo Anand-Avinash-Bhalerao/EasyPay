@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.AdminPanelSettings
+import androidx.compose.material.icons.filled.AppRegistration
 import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.NavigateNext
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Icon
@@ -24,33 +26,26 @@ import com.billion_dollor_company.easypay.ui.components.WidthSpacer
 
 @Composable
 fun MoreSection(
-    checkBalanceClick : () -> Unit = {},
-    changeIPClick : () -> Unit = {},
-    seeHistoryClick : () -> Unit = {},
-    contactUsClick : () -> Unit = {}
+    changeIPClick : () -> Unit,
+    registerClick : () -> Unit,
+    fetchKeysClick : () -> Unit
 ) {
-//    MoreItem(
-//        title = "Check Balance",
-//        icon = Icons.Default.AccountBalanceWallet,
-//        onClick = checkBalanceClick
-//    )
-
     MoreItem(
         title = "PSP IP Address",
         icon = Icons.Default.AdminPanelSettings,
         onClick = changeIPClick
     )
 
-//    MoreItem(
-//        title = "See transaction history",
-//        icon = Icons.Default.History,
-//        onClick = seeHistoryClick
-//    )
-//    MoreItem(
-//        title = "Contact us",
-//        icon = Icons.Default.Phone,
-//        onClick = contactUsClick
-//    )
+    MoreItem(
+        title = "Register CL",
+        icon = Icons.Default.AppRegistration,
+        onClick = registerClick
+    )
+    MoreItem(
+        title = "Fetch NPCI keys",
+        icon = Icons.Default.Key,
+        onClick = fetchKeysClick
+    )
 }
 
 @Composable

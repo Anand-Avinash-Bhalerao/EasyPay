@@ -48,10 +48,9 @@ object Constants {
             "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtzlJDxZyYybLotiDimedygowDUGf7x6suqbpULbkGk/YtI+q+6yRWPhYnNeSiBrxgR7xev7Afz7a38FvZbXyUlriPqk0trzacWEyEKbJAogTtc/uKdD4tZ/8FI7qEVpP4SCUjbHxhigQzHR7rfYbzjMMRghk+CS4f0WdJ2LuHBxaIOTYFiaLu/JOKxRbFhStUwG6bbuaBzEdyPIWzt9DnotemcTVpmkgblF1W1dQ3uPf2yRCXQf5YEfvQUxYTQ36tKj9yclyLCgn/8o02SiyBRmRQ1mvbV1k4pLibZByfRWh6/xbPEGQFyqRpQT6FI28rWPh6K9Ehn7gXtjjsRgjcwIDAQAB"
     }
 
+
     object Server {
         object PspServer {
-            //            const val BASE_URL = "http://10.0.2.2:16000/psp/"
-            const val BASE_URL = "http://192.168.1.9:16000/psp/"
             const val USER_INFO_URL = "accountInfo"
             const val TRANSACTION_URL = "transaction"
             const val CHECK_BALANCE_URL = "checkBalance"
@@ -59,14 +58,6 @@ object Constants {
             fun getBaseURLArray() = listOf("http://", "/psp")
             fun getBaseURL(ipAddress: String) = "http://$ipAddress:16000/psp/"
         }
-
-
-    }
-
-    object UserInfo {
-        const val UPI_ID = "upiID"
-
-        const val ENCRYPTED_PASSWORD = "encryptedPassword"
     }
 
     object Values {
@@ -78,29 +69,6 @@ object Constants {
         const val FAILED = "Failed"
     }
 
-
-    object PayeeInfo {
-        const val FULL_NAME = "payerFullName"
-        const val PHONE_NO = "payerPhoneNo"
-        const val UPI_ID = "payerUpiID"
-        const val IMAGE_ID = "payerImageID"
-        const val ACCOUNT_NO = "payerAccountNo"
-        const val BANK_NAME = "payerBankName"
-    }
-
-    object PayerInfo {
-        const val FULL_NAME = "payeeFullName"
-        const val PHONE_NO = "payeePhoneNo"
-        const val UPI_ID = "payeeUpiID"
-        const val IMAGE_ID = "payeeImageID"
-        const val ACCOUNT_NO = "payeeAccountNo"
-        const val BANK_NAME = "payeeBankName"
-    }
-
-
-    object Transaction {
-        const val SUCCESS = "success"
-    }
 
     object Preferences {
         val IP_KEY = stringPreferencesKey("ip_address")
