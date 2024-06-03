@@ -5,13 +5,17 @@ It comprises of a module called CL(Common Library) which is provided by NPCI.
 NPCI is National Payments Corporation of India. It handles the payments in India.
 UPI is Unified Payments Interface. Using this technology, you can pay by simply scanning QR codes of the payee and entering a password.
 
-## Jetpack Compose
-## MVVM - Model View ViewModel
-## Multi Module Architecture
-
 Backend Code:
 * [PSP Server](https://github.com/Anand-Avinash-Bhalerao/PSP-Bank-Server---Springboot)
 * [NPCI Server](https://github.com/Anand-Avinash-Bhalerao/NPCI-Server---Springboot)
+
+
+
+### Jetpack Compose
+### MVVM - Model View ViewModel
+### Multi Module Architecture
+
+## UI
 
 HomeScreen:
 ![Samsung Galaxy S20+ Screenshot 0](https://github.com/Anand-Avinash-Bhalerao/EasyPay/assets/87852860/5550ad4f-7a0d-4099-a098-c6487f148847)
