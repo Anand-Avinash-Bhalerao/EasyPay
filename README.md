@@ -9,6 +9,10 @@ UPI is Unified Payments Interface. Using this technology, you can pay by simply 
 ## MVVM - Model View ViewModel
 ## Multi Module Architecture
 
+Backend Code:
+* [PSP Server](https://github.com/Anand-Avinash-Bhalerao/PSP-Bank-Server---Springboot)
+* [NPCI Server](https://github.com/Anand-Avinash-Bhalerao/NPCI-Server---Springboot)
+
 HomeScreen:
 ![Samsung Galaxy S20+ Screenshot 0](https://github.com/Anand-Avinash-Bhalerao/EasyPay/assets/87852860/5550ad4f-7a0d-4099-a098-c6487f148847)
 
@@ -26,8 +30,8 @@ Features:
 5. Fetch NPCI public Keys.
 
 To make this App work, Setup the backend:
-1. Setup the PSP/Bank Server. [PSP Server](https://github.com/Anand-Avinash-Bhalerao/PSP-Bank-Server---Springboot)
-2. Setup the NPCI Server. [NPCI Server](https://github.com/Anand-Avinash-Bhalerao/NPCI-Server---Springboot)
+1. Setup the PSP/Bank Server. 
+2. Setup the NPCI Server.
 3. Setup the mySQL databases.
 
 After installing the app:
