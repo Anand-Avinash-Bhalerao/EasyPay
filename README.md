@@ -13,8 +13,8 @@ Features:
 5. Fetch NPCI public Keys.
 
 HomeScreen:
+![Samsung Galaxy S20+ Screenshot 0](https://github.com/Anand-Avinash-Bhalerao/EasyPay/assets/87852860/5550ad4f-7a0d-4099-a098-c6487f148847)
 
-![Samsung Galaxy S20+ Screenshot 0](https://github.com/Anand-Avinash-Bhalerao/EasyPay/assets/87852860/9e957ba6-e0fd-43c0-9364-73de4efb3d60)
 
 
 Transaction Screens:
