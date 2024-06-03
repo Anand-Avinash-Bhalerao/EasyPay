@@ -12,6 +12,11 @@ Features:
 4. Register CL to NPCI
 5. Fetch NPCI public Keys.
 
+![home](https://github.com/Anand-Avinash-Bhalerao/EasyPay/assets/87852860/07323f24-eefc-4fc3-8ff9-d18b5f3ef16e)
+
+
+
+
 To make this App work:
 1. Setup the PSP/Bank Server. Code for it can be found in my repositories.
 2. Setup the NPCI Server. Code for it can be found in my repositories.
