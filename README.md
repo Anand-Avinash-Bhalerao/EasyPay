@@ -13,9 +13,11 @@ Features:
 5. Fetch NPCI public Keys.
 
 HomeScreen:
+
 ![home](https://github.com/Anand-Avinash-Bhalerao/EasyPay/assets/87852860/07323f24-eefc-4fc3-8ff9-d18b5f3ef16e)
 
 Transaction Screens:
+
 ![scanqr](https://github.com/Anand-Avinash-Bhalerao/EasyPay/assets/87852860/90c85ad5-4936-4d31-9fc0-460d0c29390b) 
 ![amountEnter](https://github.com/Anand-Avinash-Bhalerao/EasyPay/assets/87852860/c4997e1e-121d-40e7-8907-4d7dc77304b6)
 ![transactionCL](https://github.com/Anand-Avinash-Bhalerao/EasyPay/assets/87852860/0840929c-40cb-43f9-937f-2b4b4fae8840)
