@@ -36,7 +36,7 @@ After installing the app:
 3. Can other features successfully now.
 
 Tech Used for App: 
-Jetpack Compose for UI
-Navigation library for navigation.
-Dagger Hilt for Dependency Injection.
-Retrofit for network Calls.
+* Jetpack Compose for UI
+* Navigation library for navigation.
+* Dagger Hilt for Dependency Injection.
+* Retrofit for network Calls.
