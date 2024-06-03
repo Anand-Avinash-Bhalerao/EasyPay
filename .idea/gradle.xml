@@ -21,6 +21,7 @@
             <option value="$PROJECT_DIR$/npciCore" />
             <option value="$PROJECT_DIR$/npciCore/common" />
             <option value="$PROJECT_DIR$/npciCore/featureApi" />
+            <option value="$PROJECT_DIR$/npciCore/featureImpl" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

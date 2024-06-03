@@ -4,10 +4,10 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.billion_dollor_company.easypay.api.StartTransactionApi
-import com.npciCore.common.models.transaction.TransactionReqInfo
-import com.npciCore.common.models.transaction.TransactionResInfo
 import com.billion_dollor_company.easypay.util.Constants
 import com.billion_dollor_company.easypay.util.navigation.Screen
+import com.core.network.models.transaction.TransactionReqInfo
+import com.core.network.models.transaction.TransactionResInfo
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -4,11 +4,11 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.billion_dollor_company.easypay.api.UserInfoApi
 import com.billion_dollor_company.easypay.models.PinCaptureReqInfo
-import com.billion_dollor_company.easypay.models.UserInfoReq
 import com.billion_dollor_company.easypay.util.Constants
 import com.billion_dollor_company.easypay.util.navigation.Screen
+import com.core.network.models.userInfo.UserReqInfo
+import com.core.network.api.UserInfoApi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.DecimalFormat
 import javax.inject.Inject
@@ -17,10 +17,8 @@ import javax.inject.Inject
 
 class AmountEnterViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
+    val userInfoApi: UserInfoApi
 ) : ViewModel() {
-
-    @Inject
-    lateinit var userInfoApi: UserInfoApi
 
     // this data is passed by the navigation components
     private var payeeName = ""
@@ -50,12 +48,12 @@ class AmountEnterViewModel @Inject constructor(
     // calls the backend to fetch the accountInfo of the payee.
     suspend fun getDetails(payeeUPI: String): PinCaptureReqInfo {
 
-        val reqObject = UserInfoReq(payeeUPI)
+        val reqObject = UserReqInfo(payeeUPI)
         val payeeDetails = userInfoApi.getUserInfo(reqObject).body()!!
 
         var payeeFullname = "${payeeDetails.firstName} "
         if (payeeDetails.middleName.isNotEmpty()) payeeFullname += "${payeeDetails.middleName} "
-        payeeFullname += "${payeeDetails.lastName}"
+        payeeFullname += payeeDetails.lastName
         val details = PinCaptureReqInfo(
             payeeUpiID = payeeDetails.upiID,
             payeeFullName = payeeFullname,

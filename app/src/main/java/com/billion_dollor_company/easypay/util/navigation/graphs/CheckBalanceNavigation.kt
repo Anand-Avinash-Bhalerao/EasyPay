@@ -8,13 +8,16 @@ import androidx.navigation.toRoute
 import com.billion_dollor_company.easypay.ui.checkBalance.checkBalanceComplete.CheckBalanceCompleteScreen
 import com.billion_dollor_company.easypay.ui.checkBalance.checkBalanceRequester.CheckBalanceRequesterScreen
 import com.billion_dollor_company.easypay.util.Constants
-import com.billion_dollor_company.easypay.util.Helper
 import com.billion_dollor_company.easypay.util.navigation.Screen
-import com.cl.ui.navigation.CheckBalanceApi
+import com.core.common.models.NpciKeyInfo
+import com.core.common.pref.npciKeys.NpciKeysPref
+import com.npciCore.featureApi.CheckBalanceFeatureApi
+import kotlinx.coroutines.flow.collect
 
 fun NavGraphBuilder.checkBalanceNavGraph(
     navHostController: NavHostController,
-    checkBalanceApi: CheckBalanceApi
+    checkBalanceFeatureApi: CheckBalanceFeatureApi,
+    npciKeyInfo: NpciKeyInfo
 ) {
     navigation(
         route = "check_balance",
@@ -23,15 +26,17 @@ fun NavGraphBuilder.checkBalanceNavGraph(
         composable<Screen.CheckBalanceRequesterScreen> { it ->
             val encryptedPassword = it.savedStateHandle.get<String>("encryptedPassword")
 
+            val npciPublicKey = npciKeyInfo.publicKey
+
             CheckBalanceRequesterScreen(
                 isPasswordFetched = encryptedPassword != null,
                 navigateToCL = {
                     navHostController.navigate(
-                        checkBalanceApi.getPath(
+                        checkBalanceFeatureApi.getPath(
                             upiID = Constants.PayerDetails.UPI_ID,
                             accountNo = Constants.PayerDetails.ACCOUNT_NO,
                             bankName = Constants.PayerDetails.BANK_NAME,
-                            publicKey = Constants.Keys.NPCI_PUBLIC_KEY
+                            publicKey = npciPublicKey
                         )
                     )
                 },
@@ -49,7 +54,7 @@ fun NavGraphBuilder.checkBalanceNavGraph(
             )
         }
 
-        checkBalanceApi.registerGraph(
+        checkBalanceFeatureApi.registerGraph(
             navController = navHostController,
             this
         )

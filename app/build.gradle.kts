@@ -59,9 +59,13 @@ kapt {
 
 dependencies {
 
-    implementation(project(":cl:ui"))
+//    implementation(project(":cl:ui"))
     implementation(project(":npciCore:featureApi"))
+    implementation(project(":npciCore:featureImpl"))
     implementation(project(":npciCore:common"))
+
+    implementation(project(":core:common"))
+    implementation(project(":core:network"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

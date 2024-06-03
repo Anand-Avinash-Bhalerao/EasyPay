@@ -7,10 +7,10 @@ import com.billion_dollor_company.easypay.api.CheckBalanceApi
 import com.billion_dollor_company.easypay.util.Constants
 import com.billion_dollor_company.easypay.util.Helper
 import com.billion_dollor_company.easypay.util.navigation.Screen
+import com.core.network.models.checkBalance.CheckBalanceReqInfo
+import com.core.network.models.checkBalance.CheckBalanceResInfo
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.npciCore.common.models.checkBalance.CheckBalanceReqInfo
-import com.npciCore.common.models.checkBalance.CheckBalanceResInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

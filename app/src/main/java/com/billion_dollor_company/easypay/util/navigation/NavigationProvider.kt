@@ -1,9 +1,9 @@
 package com.billion_dollor_company.easypay.util.navigation
 
-import com.cl.ui.navigation.CheckBalanceApi
-import com.cl.ui.navigation.TransactionApi
+import com.npciCore.featureApi.CheckBalanceFeatureApi
+import com.npciCore.featureApi.TransactionFeatureApi
 
 data class NavigationProvider(
-    val checkBalanceApi: CheckBalanceApi,
-    val transactionApi: TransactionApi
+    val checkBalanceFeatureApi: CheckBalanceFeatureApi,
+    val transactionFeatureApi: TransactionFeatureApi
 )

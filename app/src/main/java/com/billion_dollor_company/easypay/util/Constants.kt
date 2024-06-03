@@ -58,8 +58,6 @@ object Constants {
             fun getBaseURLArray() = listOf("http://", "/psp")
             fun getBaseURL(ipAddress: String) = "http://$ipAddress:16000/psp/"
         }
-
-
     }
 
     object Values {

@@ -1,5 +1,6 @@
 package com.billion_dollor_company.easypay.ui.transaction.transactionComplete
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -52,6 +53,11 @@ fun TransactionCompleteScreen(
 
     val viewModel: TransactionCompleteViewModel = hiltViewModel()
     viewModel.init(passedData)
+
+    BackHandler {
+        onBackPress()
+    }
+
 
     Surface {
 

@@ -1,7 +1,11 @@
 plugins {
+    kotlin("kapt")
+
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.googleDaggerHilt)
+    
 
 }
 
@@ -42,4 +46,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //datastore
+    implementation(libs.androidx.datastore.preferences)
+
+    //dagger hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 }

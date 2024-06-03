@@ -1,5 +1,6 @@
 package com.billion_dollor_company.easypay.ui.checkBalance.checkBalanceComplete
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -57,6 +58,10 @@ fun CheckBalanceCompleteScreen(
 ) {
     val viewModel: CheckBalanceCompleteViewModel = hiltViewModel()
     viewModel.init(passedData)
+
+    BackHandler {
+        onBackClick()
+    }
 
     var fetchStatus by remember {
         mutableStateOf(viewModel.getStatus())

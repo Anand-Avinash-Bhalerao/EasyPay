@@ -1,5 +1,7 @@
 package com.core.common
 
+import androidx.datastore.preferences.core.stringPreferencesKey
+
 object Constants{
     object CheckBalanceFeature{
         const val nestedRoute = "checkBalanceRoute"
@@ -37,4 +39,11 @@ object Constants{
 
     }
 
+    object Preferences {
+        val IP_KEY = stringPreferencesKey("ip_address")
+        val IP_FILE_NAME = "ip_file_name"
+
+        val NPCI_KEY = stringPreferencesKey("npci_key")
+        val NPCI_KEY_FILE_NAME = "npci_key_file_name"
+    }
 }

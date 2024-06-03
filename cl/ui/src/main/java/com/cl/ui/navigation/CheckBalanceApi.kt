@@ -9,13 +9,13 @@ import androidx.navigation.navigation
 import com.cl.ui.passedData.CheckBalancePassedData
 import com.cl.ui.screens.checkBalance.CheckBalancePinScreen
 import com.cl.ui.util.Helper
-import com.npciCore.featureApi.FeatureApi
+import com.npciCore.featureApi.CheckBalanceFeatureApi
 
-interface CheckBalanceApi : FeatureApi {
+internal interface IntCheckBalanceApi : CheckBalanceFeatureApi {
     override val startDestination: String get() = "checkBalancePinEnterScreen"
     override val route: String get() = "checkBalanceRoute"
 
-    fun getPath(
+    override fun getPath(
         accountNo: String,
         bankName: String,
         upiID: String,
@@ -25,7 +25,8 @@ interface CheckBalanceApi : FeatureApi {
 
 }
 
-class CheckBalanceApiImpl : CheckBalanceApi {
+class CheckBalanceApiImpl : IntCheckBalanceApi {
+
     override fun registerGraph(navController: NavHostController, navGraphBuilder: NavGraphBuilder) {
         InternalCheckBalanceApi.registerGraph(
             navController,
@@ -34,7 +35,7 @@ class CheckBalanceApiImpl : CheckBalanceApi {
     }
 }
 
-internal object InternalCheckBalanceApi : CheckBalanceApi {
+internal object InternalCheckBalanceApi : IntCheckBalanceApi {
     override fun registerGraph(
         navController: NavHostController,
         navGraphBuilder: NavGraphBuilder

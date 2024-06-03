@@ -14,14 +14,20 @@ import com.billion_dollor_company.easypay.ui.transaction.transactionComplete.Tra
 import com.billion_dollor_company.easypay.ui.transaction.transactionRequestor.TransactionCLReqScreen
 import com.billion_dollor_company.easypay.util.Constants
 import com.billion_dollor_company.easypay.util.navigation.Screen
-import com.cl.ui.navigation.TransactionApi
+import com.core.common.models.NpciKeyInfo
+import com.core.common.pref.npciKeys.NpciKeysPref
+import com.npciCore.featureApi.TransactionFeatureApi
 
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.transactionNavGraph(
     navHostController: NavHostController,
-    transactionApi: TransactionApi
+    transactionFeatureApi: TransactionFeatureApi,
+    npciKeyInfo: NpciKeyInfo
 ) {
+
+    val npciPublicKey = npciKeyInfo.publicKey
+
     navigation<Screen.TransactionRoute>(
         startDestination = Screen.AmountEnterScreen(
             fullName = "",
@@ -80,14 +86,14 @@ fun NavGraphBuilder.transactionNavGraph(
                 isPasswordFetched = encryptedPassword != null,
                 navigateToCL = {
                     navHostController.navigate(
-                        transactionApi.getPath(
+                        transactionFeatureApi.getPath(
                             payeeFullName = passedData.payeeFullName,
                             payeeUpiID = passedData.payeeUpiID,
                             payerUpiID = passedData.payerUpiID,
                             payerBankName = passedData.payerBankName,
                             payerAccountNumber = passedData.payerAccountNumber,
                             amountToPay = passedData.amountToPay,
-                            publicKey = Constants.Keys.NPCI_PUBLIC_KEY
+                            publicKey = npciPublicKey
                         )
                     )
                 },
@@ -107,7 +113,7 @@ fun NavGraphBuilder.transactionNavGraph(
             )
         }
 
-        transactionApi.registerGraph(
+        transactionFeatureApi.registerGraph(
             navController = navHostController,
             this
         )

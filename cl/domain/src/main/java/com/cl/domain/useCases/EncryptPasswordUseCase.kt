@@ -1,10 +1,14 @@
 package com.cl.domain.useCases
 
-import com.cl.domain.util.cryptography.EncryptionManager
+import com.cl.domain.util.cryptography.AsymmetricEncryptionManager
 
 class EncryptPasswordUseCase {
     fun invoke(password: String, publicKey : String) : String {
-        val encryptionManager = EncryptionManager(publicKey, "NPCI PUBLIC KEY")
-        return encryptionManager.getEncryptedMessage(password)
+        val asymmetricEncryptionManager =
+            AsymmetricEncryptionManager(
+                publicKey,
+                "NPCI PUBLIC KEY"
+            )
+        return asymmetricEncryptionManager.getEncryptedMessage(password)
     }
 }

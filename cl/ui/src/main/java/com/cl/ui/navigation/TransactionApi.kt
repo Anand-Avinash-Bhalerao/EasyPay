@@ -6,17 +6,20 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import com.cl.ui.navigation.InternalCheckBalanceApi.route
+import com.cl.ui.navigation.InternalCheckBalanceApi.startDestination
 import com.cl.ui.passedData.TransactionPassedData
 import com.cl.ui.screens.transaction.TransactionPinScreen
 import com.cl.ui.util.Helper
 import com.npciCore.featureApi.FeatureApi
+import com.npciCore.featureApi.TransactionFeatureApi
 
 
-interface TransactionApi : FeatureApi {
+internal interface IntTransactionApi : TransactionFeatureApi {
     override val startDestination: String get() = "transactionPinEnterScreen"
     override val route: String get() = "transactionRoute"
 
-    fun getPath(
+    override fun getPath(
         payeeFullName: String,
         payeeUpiID: String,
         payerUpiID: String,
@@ -25,10 +28,14 @@ interface TransactionApi : FeatureApi {
         amountToPay: String,
         publicKey: String
     ): String =
-        "$startDestination/$payeeFullName/$payeeUpiID/$payerUpiID/$payerBankName/$payerAccountNumber/$amountToPay/${Helper.encodeForSpecialCharacter(publicKey)}"
+        "$startDestination/$payeeFullName/$payeeUpiID/$payerUpiID/$payerBankName/$payerAccountNumber/$amountToPay/${
+            Helper.encodeForSpecialCharacter(
+                publicKey
+            )
+        }"
 }
 
-class TransactionApiImpl : TransactionApi {
+class TransactionApiImpl : IntTransactionApi {
     override fun registerGraph(navController: NavHostController, navGraphBuilder: NavGraphBuilder) {
         InternalTransactionApi.registerGraph(
             navController,
@@ -38,7 +45,7 @@ class TransactionApiImpl : TransactionApi {
 
 }
 
-internal object InternalTransactionApi : TransactionApi {
+internal object InternalTransactionApi : IntTransactionApi {
     override fun registerGraph(
         navController: NavHostController,
         navGraphBuilder: NavGraphBuilder

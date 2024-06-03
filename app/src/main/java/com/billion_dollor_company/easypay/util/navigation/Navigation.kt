@@ -10,12 +10,15 @@ import com.billion_dollor_company.easypay.ui.home.HomeScreen
 import com.billion_dollor_company.easypay.ui.selfQR.SelfQRScreen
 import com.billion_dollor_company.easypay.util.navigation.graphs.checkBalanceNavGraph
 import com.billion_dollor_company.easypay.util.navigation.graphs.transactionNavGraph
+import com.core.common.models.NpciKeyInfo
+import com.core.common.pref.npciKeys.NpciKeysPref
 
 @RequiresApi(Build.VERSION_CODES.O)
 
 @Composable
 fun Navigation(
-    navigationProvider: NavigationProvider
+    navigationProvider: NavigationProvider,
+    npciKeyInfo: NpciKeyInfo
 ) {
     val navController = rememberNavController()
 
@@ -63,9 +66,9 @@ fun Navigation(
             )
         }
 
-        checkBalanceNavGraph(navController, navigationProvider.checkBalanceApi)
+        checkBalanceNavGraph(navController, navigationProvider.checkBalanceFeatureApi, npciKeyInfo)
 
-        transactionNavGraph(navController, navigationProvider.transactionApi)
+        transactionNavGraph(navController, navigationProvider.transactionFeatureApi, npciKeyInfo)
 
     }
 }
