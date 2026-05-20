@@ -4,44 +4,58 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="526b4c18-00bf-48cd-9e0d-a296a16e51be" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Bank/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Bank/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Bank/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Bank/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Bank/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Bank/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Bank/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Bank/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Bank/src/main/java/com/billionDollorCompany/Bank/BankApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Bank/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Bank/src/test/java/com/billionDollorCompany/Bank/BankApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/billionDollorCompany/NPCI/NpciApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/billionDollorCompany/NPCI/NpciApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PSP/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/build.gradle" afterDir="false" />
+    <list default="true" id="25f2b6f4-b88f-47f3-bfa8-51c0088e8fa2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/Channel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/Currency.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/EncryptionAlgorithm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/RequestContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/RequestType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/ResponseMetadata.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/ResponseStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/SecurityCredential.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/payloads/request/BaseRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/payloads/request/RequestHeader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/payloads/request/Security.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/payloads/response/BaseResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/payloads/response/ErrorDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/payloads/response/ResponseHeader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/config/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/controller/NPCIController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/controller/dto/checkBalance/CheckBalanceReqBodyDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/controller/dto/checkBalance/CheckBalanceResBodyDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/domain/CheckBalanceCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/domain/CheckBalanceResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/mappers/NPCIMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/service/NPCIService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/service/NPCIServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bank/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="CopilotChats">
     <option name="panelChat">
       <chat>
-        <option name="activeSessionId" value="e3fa183d-de75-4263-89f6-32aae9982ff7" />
+        <option name="activeSessionId" value="8326f298-7eef-49f5-8800-84366cbc429d" />
         <option name="sessions">
           <session>
             <option name="chatType" value="PANEL" />
-            <option name="id" value="e3fa183d-de75-4263-89f6-32aae9982ff7" />
+            <option name="id" value="c596229c-609f-4398-8c6f-260aa5356e5b" />
+            <option name="modeId" value="Agent" />
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="auto" />
+            <option name="status" value="Completed" />
+            <option name="targetType" value="LOCAL" />
+          </session>
+          <session>
+            <option name="chatType" value="PANEL" />
+            <option name="id" value="8326f298-7eef-49f5-8800-84366cbc429d" />
             <option name="modeId" value="Agent" />
             <option name="modelType" value="builtin_family" />
             <option name="modelValue" value="auto" />
@@ -54,13 +68,14 @@
   </component>
   <component name="CopilotPersistence">
     <persistenceIdMap>
-      <entry key="_/Users/anandbhalerao/Developer/Projects/EasyPay/backend/NPCI" value="3DzT3qJ6w3FALB0rZwr1P6hPRES" />
+      <entry key="_/Users/anandbhalerao/Developer/Projects/EasyPay/backend/NPCI" value="3Dzi6RN1XZr1PWg5fnGPKx9Dpkf" />
     </persistenceIdMap>
   </component>
-  <component name="ExternalProjectsData">
-    <projectState path="$PROJECT_DIR$">
-      <ProjectState />
-    </projectState>
+  <component name="CopilotUserSelectedModel">
+    <selectedModels>
+      <entry key="agent-panel" value="Auto" />
+      <entry key="chat-panel" value="Auto" />
+    </selectedModels>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -77,40 +92,62 @@
     "accountId": "d0b9054e-0d5f-4ce2-8c78-a59569fa927d"
   }
 }]]></component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
   "associatedIndex": 7
 }]]></component>
-  <component name="ProjectId" id="3DzT3qJ6w3FALB0rZwr1P6hPRES" />
+  <component name="ProjectId" id="3Dzi6RN1XZr1PWg5fnGPKx9Dpkf" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectSessionTemplates">
+    <option name="panelTemplate">
+      <template>
+        <option name="modeId" value="Agent" />
+        <option name="model">
+          <model>
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="auto" />
+          </model>
+        </option>
+        <option name="targetType" value="LOCAL" />
+      </template>
+    </option>
   </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Gradle.NPCI [:com.billionDollarCompany.NPCI.NpciApplication.main()].executor": "Run",
+    "Application.NPCI.executor": "Run",
+    "Application.NpciApplication.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/anandbhalerao/Developer/Projects/EasyPay/backend/NPCI/src/main/java/com/billionDollorCompany/NPCI",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+    "last_opened_file_path": "/Users/anandbhalerao/Developer/Projects/EasyPay/backend/NPCI/src/main/java/com/billionDollarCompany/npci",
+    "settings.editor.selected.configurable": "editor.preferences.import"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/java/com/billionDollorCompany/NPCI" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="NPCI" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.billionDollarCompany.NPCI.NpciApplication" />
-      <module name="NPCI.main" />
+      <option name="MAIN_CLASS_NAME" value="com.billionDollarCompany.npci.NpciApplication" />
+      <module name="npci" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -125,11 +162,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="526b4c18-00bf-48cd-9e0d-a296a16e51be" name="Changes" comment="" />
-      <created>1779283701799</created>
+      <changelist id="25f2b6f4-b88f-47f3-bfa8-51c0088e8fa2" name="Changes" comment="" />
+      <created>1779291123698</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1779283701799</updated>
+      <updated>1779291123698</updated>
     </task>
     <servers />
   </component>
