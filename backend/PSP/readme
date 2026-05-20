@@ -1,0 +1,18 @@
+This is part of the NPCI Upi Simulator Project.
+This is the PSP/Bank Server.
+It contains both PSP and Bank. but both having separate controllors.
+PSP is the only one in contact with the app.
+
+The flow:
+app <-> psp <-> npci <-> bank
+
+It contains the endpoint for the following features:
+1. To fetch user info.
+2. Initiate a transaction.
+3. Check account balance.
+4. Fetch NPCI public keys.
+5. Register App's CL with NPCI.
+
+Tech Used:
+1. Spring boot - JAVA
+2. mySQL for database.
