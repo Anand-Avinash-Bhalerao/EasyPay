@@ -15,6 +15,5 @@ public class PSPServiceImpl implements PSPService{
     @Override
     public CheckBalanceResult initiateBalanceInquiry(CheckBalanceCommand command) {
         return npciClient.initiateCheckBalance(command);
-//        return null;
     }
 }
