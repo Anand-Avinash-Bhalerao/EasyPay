@@ -1,4 +1,4 @@
-package com.billionDollarCompany.npci.service;
+package com.billionDollarCompany.npci.application.service;
 
 
 import com.billionDollarCompany.npci.domain.CheckBalanceCommand;

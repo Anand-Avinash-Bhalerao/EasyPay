@@ -7,7 +7,7 @@ import com.billionDollarCompany.npci.controller.dto.checkBalance.CheckBalanceRes
 import com.billionDollarCompany.npci.domain.CheckBalanceCommand;
 import com.billionDollarCompany.npci.domain.CheckBalanceResult;
 import com.billionDollarCompany.npci.mappers.NPCIMapper;
-import com.billionDollarCompany.npci.service.NPCIService;
+import com.billionDollarCompany.npci.application.service.NPCIService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class NPCIController {
     private static final Logger logger = LoggerFactory.getLogger(NPCIController.class);
 
     @Autowired
-    private NPCIService NPCIService;
+    private NPCIService npciService;
 
     @Autowired
     private NPCIMapper npciMapper;
@@ -47,7 +47,7 @@ public class NPCIController {
 
         try {
             CheckBalanceCommand command = npciMapper.toCheckBalanceCommand(request);
-            CheckBalanceResult result = NPCIService.initiateBalanceInquiry(command);
+            CheckBalanceResult result = npciService.initiateBalanceInquiry(command);
             BaseResponseDTO<CheckBalanceResBodyDTO> baseResponse = npciMapper.toCheckBalanceResponse(result);
             return ResponseEntity.ok(baseResponse);
         } catch (Exception e) {

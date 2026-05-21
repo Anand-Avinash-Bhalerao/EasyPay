@@ -4,32 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25f2b6f4-b88f-47f3-bfa8-51c0088e8fa2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/Channel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/Currency.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/EncryptionAlgorithm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/RequestContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/RequestType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/ResponseMetadata.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/ResponseStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/SecurityCredential.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/payloads/request/BaseRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/payloads/request/RequestHeader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/payloads/request/Security.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/payloads/response/BaseResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/payloads/response/ErrorDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/payloads/response/ResponseHeader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/config/AppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/controller/NPCIController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/controller/dto/checkBalance/CheckBalanceReqBodyDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/controller/dto/checkBalance/CheckBalanceResBodyDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/domain/CheckBalanceCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/domain/CheckBalanceResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/mappers/NPCIMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/service/NPCIService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/service/NPCIServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Bank/.idea/workspace.xml" beforeDir="false" />
+    <list default="true" id="25f2b6f4-b88f-47f3-bfa8-51c0088e8fa2" name="Changes" comment="NPCI project setup">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/application/service/NPCIServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/application/service/cryptography/CryptographyService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/application/service/cryptography/RSACryptographyService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/controller/NPCIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/controller/NPCIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/service/NPCIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/application/service/NPCIService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/service/NPCIServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PSP/src/main/java/com/billionDollarCompany/psp/controller/PSPController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/src/main/java/com/billionDollarCompany/psp/controller/PSPController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PSP/src/main/java/com/billionDollarCompany/psp/mappers/PSPMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/src/main/java/com/billionDollarCompany/psp/mapper/PSPMapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +35,7 @@
             <option name="modeId" value="Agent" />
             <option name="modelType" value="builtin_family" />
             <option name="modelValue" value="auto" />
-            <option name="status" value="Completed" />
+            <option name="status" value="Stopped" />
             <option name="targetType" value="LOCAL" />
           </session>
           <session>
@@ -76,6 +61,14 @@
       <entry key="agent-panel" value="Auto" />
       <entry key="chat-panel" value="Auto" />
     </selectedModels>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -125,7 +118,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.NPCI.executor": "Run",
+    "Application.NPCI.executor": "Debug",
     "Application.NpciApplication.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -168,7 +161,31 @@
       <option name="presentableId" value="Default" />
       <updated>1779291123698</updated>
     </task>
+    <task id="LOCAL-00001" summary="NPCI project setup">
+      <option name="closed" value="true" />
+      <created>1779292961939</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1779292961939</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="NPCI project setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="NPCI project setup" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/application/service/NPCIServiceImpl.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

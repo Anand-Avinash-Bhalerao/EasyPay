@@ -1,4 +1,4 @@
-package com.billionDollarCompany.psp.mappers;
+package com.billionDollarCompany.psp.mapper;
 
 import com.billionDollarCompany.psp.common.domain.RequestContext;
 import com.billionDollarCompany.psp.common.domain.SecurityCredential;

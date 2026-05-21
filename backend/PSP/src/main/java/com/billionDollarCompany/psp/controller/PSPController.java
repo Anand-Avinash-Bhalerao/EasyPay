@@ -6,7 +6,7 @@ import com.billionDollarCompany.psp.controller.dto.checkBalance.CheckBalanceReqB
 import com.billionDollarCompany.psp.controller.dto.checkBalance.CheckBalanceResBodyDTO;
 import com.billionDollarCompany.psp.domain.CheckBalanceCommand;
 import com.billionDollarCompany.psp.domain.CheckBalanceResult;
-import com.billionDollarCompany.psp.mappers.PSPMapper;
+import com.billionDollarCompany.psp.mapper.PSPMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
