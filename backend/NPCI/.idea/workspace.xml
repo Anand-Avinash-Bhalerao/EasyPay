@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25f2b6f4-b88f-47f3-bfa8-51c0088e8fa2" name="Changes" comment="NPCI project setup">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/application/service/NPCIServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/application/service/cryptography/CryptographyService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/application/service/cryptography/RSACryptographyService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/controller/NPCIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/controller/NPCIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/service/NPCIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/application/service/NPCIService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/service/NPCIServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PSP/src/main/java/com/billionDollarCompany/psp/controller/PSPController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/src/main/java/com/billionDollarCompany/psp/controller/PSPController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PSP/src/main/java/com/billionDollarCompany/psp/mappers/PSPMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/src/main/java/com/billionDollarCompany/psp/mapper/PSPMapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,17 +166,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="NPCI project setup" />
     <option name="LAST_COMMIT_MESSAGE" value="NPCI project setup" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/application/service/NPCIServiceImpl.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
