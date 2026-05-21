@@ -1,4 +1,4 @@
-package com.billionDollarCompany.npci.common.domain;
+package com.billionDollarCompany.bank.common.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,4 +17,3 @@ public class SecurityCredential {
 
     String encryptedPin;
 }
-

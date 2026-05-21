@@ -14,17 +14,23 @@ public class NPCIServiceImpl implements NPCIService {
     CryptographyService cryptographyService;
 
     @Value("${npci.key.private}")
-    private String privateKey;
+    private String npciPrivateKey;
+
+    @Value("${bank.key.public}")
+    private String bankPublicKey;
 
 
     @Override
     public CheckBalanceResult initiateBalanceInquiry(CheckBalanceCommand command) {
 
-        String encryptedPin = command.credential().encryptedPin();
+        String encryptedPin = command.getCredential().getEncryptedPin();
 
         try {
-            String decryptedPin = cryptographyService.decrypt(encryptedPin, privateKey);
-            System.out.println("Decrypted PIN: " + decryptedPin);
+            String decryptedPin = cryptographyService.decrypt(encryptedPin, npciPrivateKey);
+
+            String encryptedPinForBank = cryptographyService.encrypt(decryptedPin, bankPublicKey);
+
+            command.getCredential().setEncryptedPin(encryptedPinForBank);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

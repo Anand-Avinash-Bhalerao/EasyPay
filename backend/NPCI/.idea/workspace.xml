@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25f2b6f4-b88f-47f3-bfa8-51c0088e8fa2" name="Changes" comment="NPCI project setup">
+    <list default="true" id="25f2b6f4-b88f-47f3-bfa8-51c0088e8fa2" name="Changes" comment="Comment refactor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/application/service/NPCIServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/application/service/NPCIServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/SecurityCredential.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/SecurityCredential.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/domain/CheckBalanceCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/domain/CheckBalanceCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,12 +164,21 @@
       <option name="project" value="LOCAL" />
       <updated>1779292961939</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Comment refactor">
+      <option name="closed" value="true" />
+      <created>1779385075973</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1779385075973</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="NPCI project setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="NPCI project setup" />
+    <MESSAGE value="Comment refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Comment refactor" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
