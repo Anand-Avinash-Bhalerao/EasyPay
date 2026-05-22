@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * REST controller for Bank operations.
- * Handles incoming PSP-related requests and routes them to appropriate services.
+ * Handles incoming Bank-related requests and routes them to appropriate services.
  */
 @RestController
 @RequestMapping("/bank")
