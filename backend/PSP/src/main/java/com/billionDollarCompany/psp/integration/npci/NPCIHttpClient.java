@@ -48,6 +48,7 @@ public class NPCIHttpClient implements NPCIClient {
 
         try {
 
+            // Make call to NPCI for check balance
             ResponseEntity<BaseResponseDTO<NPCICheckBalanceResBodyDTO>> response =
                     restTemplate.exchange(
                             url,
