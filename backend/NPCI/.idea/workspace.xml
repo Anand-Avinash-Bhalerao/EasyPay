@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25f2b6f4-b88f-47f3-bfa8-51c0088e8fa2" name="Changes" comment="Comment refactor">
+      <change afterPath="$PROJECT_DIR$/../Bank/src/main/java/com/billionDollarCompany/bank/application/service/hashing/HashingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Bank/src/main/java/com/billionDollarCompany/bank/application/service/hashing/Sha512HashingServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/integration/npci/BankClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/integration/npci/BankHttpClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/integration/npci/dto/checkBalance/BankCheckBalanceReqBodyDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/integration/npci/dto/checkBalance/BankCheckBalanceResBodyDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/integration/npci/mapper/BankMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bank/src/main/java/com/billionDollarCompany/bank/application/service/BankServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Bank/src/main/java/com/billionDollarCompany/bank/application/service/BankServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/application/service/NPCIServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/application/service/NPCIServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/SecurityCredential.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/common/domain/SecurityCredential.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/domain/CheckBalanceCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/billionDollarCompany/npci/domain/CheckBalanceCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
